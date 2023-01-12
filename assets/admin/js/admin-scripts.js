@@ -2,7 +2,7 @@
 ;(function ($) {
 "use strict";
     
-    $('.rai-zoom-gallery-upload-button').click(function (event) { // button click
+    $('.uig-zoom-gallery-upload-button').click(function (event) { // button click
         // prevent default link click event
         event.preventDefault();
 
@@ -30,13 +30,13 @@
 
             selectedImages.map(image => {
                 // add every selected image to the <ul> list
-                $('.rai-zoom-gallery-metabox').append('<li data-id="' + image.id + '"><span class="rai-zoom-gallery-image" style="background-image:url(' + image.attributes.url + ')"></span><a title="Remove" href="#" class="rai-gallery-image-remove">×</a></li>');
+                $('.uig-zoom-gallery-metabox').append('<li data-id="' + image.id + '"><span class="uig-zoom-gallery-image" style="background-image:url(' + image.attributes.url + ')"></span><a title="Remove" href="#" class="uig-gallery-image-remove">×</a></li>');
                 // and to hidden field
                 hiddenFieldValue.push(image.id)
             });
 
             // refresh sortable
-            $('.rai-zoom-gallery-metabox').sortable('refresh');
+            $('.uig-zoom-gallery-metabox').sortable('refresh');
             // add the IDs to the hidden field value
             hiddenField.val(hiddenFieldValue.join());
 
@@ -44,14 +44,14 @@
     });
 
     // remove image event
-    $(document).on('click', '.rai-gallery-image-remove', function (event) {
+    $(document).on('click', '.uig-gallery-image-remove', function (event) {
 
         event.preventDefault();
 
         const button = $(this);
         const imageId = button.parent().data('id');
         const container = button.parent().parent();
-        const hiddenField = container.parent().find('.rai-image-ids');
+        const hiddenField = container.parent().find('.uig-image-ids');
         const hiddenFieldValue = hiddenField.val().split(",");
         const i = hiddenFieldValue.indexOf(imageId.toString());
         
@@ -71,7 +71,7 @@
     });
 
     // reordering the images with drag and drop
-    $('.rai-zoom-gallery-metabox').sortable({
+    $('.uig-zoom-gallery-metabox').sortable({
         items: 'li',
         cursor: '-webkit-grabbing', // mouse cursor
         scrollSensitivity: 40,
@@ -85,7 +85,7 @@
             ui.item.removeAttr('style');
 
             let sort = new Array() // array of image IDs
-            const container = $(this) // .rai-zoom-gallery-metabox
+            const container = $(this) // .uig-zoom-gallery-metabox
 
             // each time after dragging we resort our array
             container.find('li').each(function (index) {
@@ -93,14 +93,43 @@
             });
             // add the array value to the hidden input field
             
-            container.parent().find('.rai-image-ids').val(sort.join());
+            container.parent().find('.uig-image-ids').val(sort.join());
             // console.log(sort);
         }
     });
     
+
+    //new codes
+    
+      $(document).ready(function () {
+          // Make the field sortable
+          $('#repeatable-field').sortable();
+
+          // Add a new field
+          $('#add-field').click(function (e) {
+              e.preventDefault();
+              $('#repeatable-field').append($('.field-item-clone').html());
+          });
+
+          // Remove a field
+          $(document).on('click', '.remove-field', function (e) {
+              e.preventDefault();
+              $(this).parents('.field-item').remove();
+          });
+      });
+    
+    $(document).on('click', '.toggle-button', function() {
+        $(this).toggleClass('arrow-down-style');
+        $(this).parents('.field-item').find('.gallery-fields-wrapper').slideToggle();
+        $(this).parents('.field-item').toggleClass('pad-bottom-0');
+        $(this).parents('.field-item').find('.repeater-action-buttons').toggleClass('border-bottom-0');
+    });
+    //end new codes
+    
+    
     
     /*Copy shortcode*/
-    jQuery('.rai_display_shortcode').on('click', function(){
+    jQuery('.uig_display_shortcode').on('click', function(){
     
         var copyText = this;
 
@@ -109,7 +138,7 @@
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
 
-            var elem = document.getElementById("rai_shortcode_copied_notice");
+            var elem = document.getElementById("uig_shortcode_copied_notice");
 
             var time = 0;
             var id = setInterval(copyAlert, 10);
@@ -126,4 +155,5 @@
         }
 
     });
+    
 }(window.jQuery));

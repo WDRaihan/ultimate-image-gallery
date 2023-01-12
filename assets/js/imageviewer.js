@@ -3,21 +3,33 @@
 
     var $image = $('#image');
 
-    $image.viewer({
+    /*$image.viewer({
         inline: false,
+        scalable: false,
+        rotatable: false,
         viewed: function () {
             $image.viewer('zoomTo', 1);
         }
-    });
-
-    // Get the Viewer.js instance after initialized
-    var viewer = $image.data('viewer');
+    });*/
 
     // View a list of images
-    $('#images').viewer();
+    $('#images').viewer({
+        inline: false,
+        scalable: false,
+        rotatable: false,
+        movable: true,
+    });
     
+    // Get the Viewer.js instance after initialized
+    //var viewer = $image.data('viewer');
     
-    jQuery('.rai-filter-buttons button').on('click', function(){
+    jQuery(document).on('click','.uig-filter-item',function(){
+        if ( jQuery('.toolbar-top-buttons').length < 1 ) {
+          jQuery('li.viewer-prev, li.viewer-play, li.viewer-next').wrapAll('<div class="toolbar-top-buttons"></div>');
+        }
+    });
+    
+    jQuery('.uig-filter-buttons button').on('click', function(){
         var category = jQuery(this).attr('data-filter');
         
         if( category == '*' ){
@@ -26,7 +38,7 @@
             jQuery('.img-viewer #images li').removeClass('hide-item');
         }else{
             
-            var hasclass = $( '.img-viewer #images li' ).hasClass('hide-item')
+            var hasclass = $( '.img-viewer #images li' ).hasClass('hide-item');
             
             jQuery('.img-viewer #images li').addClass('hide-item');
             
@@ -53,25 +65,25 @@
     
     /*jQuery(document).ready(function(){
 		
-		jQuery( '.rai-filter-gallery-wraper' ).each(function(){
+		jQuery( '.uig-filter-gallery-wraper' ).each(function(){
 			
 			var eachWraper = jQuery(this);
 
-			var eachItem = jQuery( '.rai-filter-item', this );
+			var eachItem = jQuery( '.uig-filter-item', this );
 
-			jQuery( '.rai_gallery_filter', eachWraper ).isotope({ filter: '*' });
+			jQuery( '.uig_gallery_filter', eachWraper ).isotope({ filter: '*' });
 
-			eachWraper.find( '.rai-filter-buttons' ).on( 'click', '.rai-filter-button', function(){
+			eachWraper.find( '.uig-filter-buttons' ).on( 'click', '.uig-filter-button', function(){
 
 				var filterValue = jQuery(this).attr('data-filter');
 
-				eachWraper.find( '.rai_gallery_filter' ).isotope({ filter: filterValue });
+				eachWraper.find( '.uig_gallery_filter' ).isotope({ filter: filterValue });
 
 			} );
 
 		});
         
-        //jQuery('.rai-filter-button.rai-filter-active').trigger('click');
+        //jQuery('.uig-filter-button.uig-filter-active').trigger('click');
 	
 	});*/
 

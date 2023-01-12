@@ -27,7 +27,7 @@ var DEFAULTS = {
   navbar: true,
 
   // Show the title
-  title: true,
+  title: false,
 
   // Show the toolbar
   toolbar: true,

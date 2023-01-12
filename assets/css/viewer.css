@@ -67,6 +67,24 @@
     content: 'Next';
 }
 
+/*
+li.viewer-prev,
+li.viewer-play,
+li.viewer-next {
+    position: absolute;
+    top: -21px;
+    left: calc(40% - 12px);
+}
+
+li.viewer-play.viewer-large {
+    margin-left: 28px;
+}
+
+li.viewer-next {
+    margin-left: 52px !important;
+}
+*/
+
 .viewer-rotate-left::before {
     background-position: -140px 0;
     content: 'Rotate Left';
@@ -238,12 +256,19 @@
 }
 
 .viewer-toolbar ul {
-    display: inline-block;
+    display: flex;
     margin: 0 auto 5px;
     overflow: hidden;
-    padding: 3px 0;
+    padding: 0 0;
+    position: relative;
+    height: 60px;
+    justify-content: center;
+    align-items: flex-end;
 }
-
+.toolbar-top-buttons {
+    position: absolute;
+    top: 7px;
+}
 .viewer-toolbar li {
     background-color: rgba(0, 0, 0, .5);
     border-radius: 50%;
