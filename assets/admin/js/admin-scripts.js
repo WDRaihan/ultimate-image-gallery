@@ -99,6 +99,44 @@
     });
     
 
+    // Uploading files
+    $(document).on('click','.gallery-image-upload', function (e) {
+    var gallery_image_file_frame;
+        e.preventDefault();
+        
+        var imageTag = $(this).parents('.field-item').find('.gallery-perview-image');
+        var imageUrl = $(this).parent('.image-field-wrappper').find('input[name="gallery-image-url[]"]');
+        
+        // If the media frame already exists, reopen it.
+        if (gallery_image_file_frame) {
+            gallery_image_file_frame.open();
+            return;
+        }
+
+        // Create the media frame.
+        gallery_image_file_frame = wp.media.frames.gallery_image_file_frame = wp.media({
+            title: jQuery(this).data('uploader_title'),
+            button: {
+                text: jQuery(this).data('uploader_button_text'),
+            },
+            multiple: false // Set to true to allow multiple files to be selected
+        });
+
+        // When a file is selected, run a callback.
+        gallery_image_file_frame.on('select', function () {
+            // We set multiple to false so only get one image from the uploader
+            var attachment = gallery_image_file_frame.state().get('selection').first().toJSON();
+
+            var url = attachment.url;
+
+            imageUrl.val(url);
+            imageTag.attr('src',url);
+        });
+
+        // Finally, open the modal
+        gallery_image_file_frame.open();
+    });
+    
     //new codes
     
       $(document).ready(function () {
@@ -124,6 +162,17 @@
         $(this).parents('.field-item').toggleClass('pad-bottom-0');
         $(this).parents('.field-item').find('.repeater-action-buttons').toggleClass('border-bottom-0');
     });
+    
+    $(document).ready(function () {
+        $('.gallery_type').on('change', function () {
+            if ($(this).val() == 'filterable_gallery') {
+                $('.filter_category_field').removeClass('hidden-if-image-gallery');
+            } else {
+                $('.filter_category_field').addClass('hidden-if-image-gallery');
+            }
+        });
+    });
+
     //end new codes
     
     

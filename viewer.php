@@ -90,10 +90,10 @@ class UIG_Ultimate_Image_Gallery {
     <!--Filter type-->
     <h4 class="gallery-settings-heading">Select gallery type</h4>
     <div class="filter-type-tabs">
-        <input type="radio" name="tabs" id="tab-1" checked>
-        <label for="tab-1" class="filter-type-tab">Image gallery</label>
-        <input type="radio" name="tabs" id="tab-2">
-        <label for="tab-2" class="filter-type-tab">Filterable image gallery</label>
+        <input class="gallery_type" type="radio" name="gallery_type" id="type_image_gallery" checked value="image_gallery">
+        <label for="type_image_gallery" class="filter-type-tab">Image gallery</label>
+        <input class="gallery_type" type="radio" name="gallery_type" id="type_filterable_gallery" value="filterable_gallery">
+        <label for="type_filterable_gallery" class="filter-type-tab">Filterable image gallery</label>
     </div>
     
     <hr>
@@ -104,28 +104,27 @@ class UIG_Ultimate_Image_Gallery {
             <div class="field-item">
                <div class="repeater-action-buttons">
                    <span class="dashicons dashicons-move"></span>
-                   <img class="gallery-perview-image" src="http://wp.test/wp-content/uploads/2022/09/beanie-2.jpg" alt="image">
+                   <img class="gallery-perview-image" src="">
                    <div><span class="toggle-button dashicons dashicons-arrow-up-alt2"></span><a href="#" class="remove-field">Remove</a></div>
                </div>
                 <div class="gallery-fields-wrapper">
                     <ul>
                         <li>
-                           <label class="gallery-form-control-lebel" for="image-url">Upload Image or Enter URL</label>
+                           <label class="gallery-form-control-lebel">Upload Image or Enter URL</label>
                             <div class="image-field-wrappper">
-                                <input class="gallery-form-control" type="text" name="field[]" value="" id="image-url" placeholder="Enter image URL"><a class="button button-primary button-large image-upload" href="#">Upload</a>
+                                <input class="gallery-form-control image-url" type="text" name="gallery-image-url[]" value="" placeholder="Enter image URL"><a class="gallery-image-upload button button-primary button-large image-upload" href="#">Upload</a>
                             </div>
                         </li>
                         <li>
-                           <label class="gallery-form-control-lebel" for="image-title">Image Title</label>
-                            <input class="gallery-form-control" type="text" name="image-title" value="" id="image-title" placeholder="Enter image title">
+                           <label class="gallery-form-control-lebel">Image Title</label>
+                            <input class="gallery-form-control" type="text" name="image-title" value="" placeholder="Enter image title">
                         </li>
-                        <li>
-                            <label class="gallery-form-control-lebel" for="filter-category">Filter Category</label>
+                        <li class="filter_category_field hidden-if-image-gallery">
+                            <label class="gallery-form-control-lebel">Filter Category</label>
                             <?php
                             $args = array(
                                 'taxonomy' => 'filter-category',
                                 'name' => 'filter-category',
-                                'id' => 'filter-category',
                                 'class' => 'filter-category gallery-form-control',
                                 'show_option_none' => 'Select a category',
                                 'option_none_value' => '',
@@ -142,28 +141,27 @@ class UIG_Ultimate_Image_Gallery {
             <div class="field-item">
                <div class="repeater-action-buttons">
                    <span class="dashicons dashicons-move"></span>
-                   <img class="gallery-perview-image" src="http://wp.test/wp-content/uploads/2022/09/beanie-2.jpg" alt="image">
+                   <img class="gallery-perview-image" src="">
                    <div><span class="toggle-button dashicons dashicons-arrow-up-alt2"></span><a href="#" class="remove-field">Remove</a></div>
                </div>
                 <div class="gallery-fields-wrapper">
                     <ul>
                         <li>
-                           <label class="gallery-form-control-lebel" for="image-url">Upload Image or Enter URL</label>
+                           <label class="gallery-form-control-lebel">Upload Image or Enter URL</label>
                             <div class="image-field-wrappper">
-                                <input class="gallery-form-control" type="text" name="field[]" value="" id="image-url" placeholder="Enter image URL"><a class="button button-primary button-large image-upload" href="#">Upload</a>
+                                <input class="gallery-form-control image-url" type="text" name="gallery-image-url[]" value="" placeholder="Enter image URL"><a class="gallery-image-upload button button-primary button-large image-upload" href="#">Upload</a>
                             </div>
                         </li>
                         <li>
-                           <label class="gallery-form-control-lebel" for="image-title">Image Title</label>
-                            <input class="gallery-form-control" type="text" name="image-title" value="" id="image-title" placeholder="Enter image title">
+                           <label class="gallery-form-control-lebel">Image Title</label>
+                            <input class="gallery-form-control" type="text" name="image-title" value="" placeholder="Enter image title">
                         </li>
-                        <li>
-                            <label class="gallery-form-control-lebel" for="filter-category">Filter Category</label>
+                        <li class="filter_category_field hidden-if-image-gallery">
+                            <label class="gallery-form-control-lebel">Filter Category</label>
                             <?php
                             $args = array(
                                 'taxonomy' => 'filter-category',
                                 'name' => 'filter-category',
-                                'id' => 'filter-category',
                                 'class' => 'filter-category gallery-form-control',
                                 'show_option_none' => 'Select a category',
                                 'option_none_value' => '',
