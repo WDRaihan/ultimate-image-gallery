@@ -100,12 +100,12 @@
     
 
     // Uploading files
-    $(document).on('click','.gallery-image-upload', function (e) {
+    $(document).on('click','.uig-gallery-image-upload', function (e) {
     var gallery_image_file_frame;
         e.preventDefault();
         
-        var imageTag = $(this).parents('.field-item').find('.gallery-perview-image');
-        var imageUrl = $(this).parent('.image-field-wrappper').find('input[name="gallery-image-url[]"]');
+        var imageTag = $(this).parents('.uig-field-item').find('.uig-gallery-perview-image');
+        var imageUrl = $(this).parent('.uig-image-field-wrappper').find('input[name="uig-gallery-image-url[]"]');
         
         // If the media frame already exists, reopen it.
         if (gallery_image_file_frame) {
@@ -141,30 +141,30 @@
     
       $(document).ready(function () {
           // Make the field sortable
-          $('#repeatable-field').sortable();
+          $('#uig-repeatable-fields').sortable();
 
           // Add a new field
-          $('#add-field').click(function (e) {
+          $('#uig-add-field').click(function (e) {
               e.preventDefault();
-              $('#repeatable-field').append($('.field-item-clone').html());
+              $('#uig-repeatable-fields').append($('.uig-field-item-clone').html());
           });
 
           // Remove a field
-          $(document).on('click', '.remove-field', function (e) {
+          $(document).on('click', '.uig-remove-field', function (e) {
               e.preventDefault();
-              $(this).parents('.field-item').remove();
+              $(this).parents('.uig-field-item').remove();
           });
       });
     
     $(document).on('click', '.toggle-button', function() {
         $(this).toggleClass('arrow-down-style');
-        $(this).parents('.field-item').find('.gallery-fields-wrapper').slideToggle();
-        $(this).parents('.field-item').toggleClass('pad-bottom-0');
-        $(this).parents('.field-item').find('.repeater-action-buttons').toggleClass('border-bottom-0');
+        $(this).parents('.uig-field-item').find('.uig-gallery-fields-wrapper').slideToggle();
+        $(this).parents('.uig-field-item').toggleClass('pad-bottom-0');
+        $(this).parents('.uig-field-item').find('.uig-repeater-action-buttons').toggleClass('border-bottom-0');
     });
     
     $(document).ready(function () {
-        $('.gallery_type').on('change', function () {
+        $('.uig_gallery_type').on('change', function () {
             if ($(this).val() == 'filterable_gallery') {
                 $('.filter_category_field').removeClass('hidden-if-image-gallery');
             } else {

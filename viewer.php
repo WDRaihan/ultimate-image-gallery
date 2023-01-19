@@ -2,16 +2,16 @@
 
 /*
 Plugin Name: Ultimate Image Gallery - Image Zoom, Viewer, Lightbox and Filter Gallery
-Author: uighan
+Author: wdraihan
 Description:This is a beautiful responsive image gallery. You can see each image with 10000% zoom and it has  more features. After installing it, a Gallery menu will be created on your WordPress dashboard, form which you can easily set the image. You can use it as a portfolio gallery, photo gallery,  photo album, image gallery, widget image gallery etc. (You have to use this shortcode "[uig_image_gallery] or [uig_image_gallery title="your title" description="Your description"][/uig_image_gallery]" in your page to show the gallery).
 Version: 1.0
-Text Domain: uig_image_viewer
+Text Domain: ultimate_image_gallery
 Domain Path: /languages
 */
 /*
 Shortcodes: 
-[uig_image_gallery]
-[uig_filter_gallery]
+[ultimate_image_gallery]
+[ultimate_image_gallery]
 */
 
 class UIG_Ultimate_Image_Gallery {
@@ -21,16 +21,16 @@ class UIG_Ultimate_Image_Gallery {
         add_action( 'add_meta_boxes', array($this,'uig_register_meta_boxes') );
         add_action( 'save_post', array($this,'uig_save_meta_box' ), 10, 2 );
         
-        add_action('init', array($this, 'uig_image_viewer_function'));
-        add_action('wp_enqueue_scripts', array($this,'uig_image_viewer_scripts'));
+        add_action('init', array($this, 'ultimate_image_gallery_function'));
+        add_action('wp_enqueue_scripts', array($this,'ultimate_image_gallery_scripts'));
         add_action('admin_enqueue_scripts', array($this,'admin_scripts'));
-        add_shortcode('uig_image_gallery', array($this, 'uig_image_viewer_scode'));
+        add_shortcode('uig_image_gallery', array($this, 'ultimate_image_gallery_scode'));
         add_shortcode('uig_filter_gallery', array($this, 'uig_filter_gallery_scode'));
         
         add_action( 'init', array($this, 'uig_register_private_taxonomy'), 0 );
         
         // admin column
-        add_filter('manage_uig-image-post_posts_columns', array($this, 'uig_custom_columns' ), 10);
+        add_filter('manage_uig_image_gallery_posts_columns', array($this, 'uig_custom_columns' ), 10);
         add_action('manage_posts_custom_column', array($this, 'uig_custom_columns_shortcode' ), 10, 2);
         
         define('BG_CSS_URI', trailingslashit('assets/css'));
@@ -42,8 +42,8 @@ class UIG_Ultimate_Image_Gallery {
      * Register meta box(es).
      */
     public function uig_register_meta_boxes() {
-        add_meta_box( 'zoom-gallery-images', __( 'Zoom Gallery images', 'textdomain' ), array($this, 'uig_my_display_callback' ), 'uig-image-post' );
-        add_meta_box('uig_shortcode_metabox','Shortcode', array( $this, 'uig_shortcode_metabox_callback' ),'uig-image-post','side','high');
+        add_meta_box( 'zoom-gallery-images', __( 'Zoom Gallery images', 'textdomain' ), array($this, 'uig_my_display_callback' ), 'uig_image_gallery' );
+        add_meta_box('uig_shortcode_metabox','Shortcode', array( $this, 'uig_shortcode_metabox_callback' ),'uig_image_gallery','side','high');
     }
     
 
@@ -88,44 +88,44 @@ class UIG_Ultimate_Image_Gallery {
     
     
     <!--Filter type-->
-    <h4 class="gallery-settings-heading">Select gallery type</h4>
-    <div class="filter-type-tabs">
-        <input class="gallery_type" type="radio" name="gallery_type" id="type_image_gallery" checked value="image_gallery">
-        <label for="type_image_gallery" class="filter-type-tab">Image gallery</label>
-        <input class="gallery_type" type="radio" name="gallery_type" id="type_filterable_gallery" value="filterable_gallery">
-        <label for="type_filterable_gallery" class="filter-type-tab">Filterable image gallery</label>
+    <h4 class="uig-gallery-settings-heading">Select gallery type</h4>
+    <div class="uig-filter-type-tabs">
+        <input class="uig_gallery_type" type="radio" name="uig_gallery_type" id="uig_type_image_gallery" checked value="image_gallery">
+        <label for="uig_type_image_gallery" class="uig-filter-type-tab">Image gallery</label>
+        <input class="uig_gallery_type" type="radio" name="uig_gallery_type" id="uig_type_filterable_gallery" value="filterable_gallery">
+        <label for="uig_type_filterable_gallery" class="uig-filter-type-tab">Filterable image gallery</label>
     </div>
     
     <hr>
    
-   <h4 class="gallery-settings-heading left-align">Add gallery images</h4>
-    <div class="repeater-table">
-        <div class="field-item-clone" style="display:none">
-            <div class="field-item">
-               <div class="repeater-action-buttons">
+   <h4 class="uig-gallery-settings-heading left-align">Add gallery images</h4>
+    <div class="uig-repeater-container">
+        <div class="uig-field-item-clone" style="display:none">
+            <div class="uig-field-item">
+               <div class="uig-repeater-action-buttons">
                    <span class="dashicons dashicons-move"></span>
-                   <img class="gallery-perview-image" src="">
-                   <div><span class="toggle-button dashicons dashicons-arrow-up-alt2"></span><a href="#" class="remove-field">Remove</a></div>
+                   <img class="uig-gallery-perview-image" src="">
+                   <div><span class="toggle-button dashicons dashicons-arrow-up-alt2"></span><a href="#" class="uig-remove-field">Remove</a></div>
                </div>
-                <div class="gallery-fields-wrapper">
+                <div class="uig-gallery-fields-wrapper">
                     <ul>
                         <li>
-                           <label class="gallery-form-control-lebel">Upload Image or Enter URL</label>
-                            <div class="image-field-wrappper">
-                                <input class="gallery-form-control image-url" type="text" name="gallery-image-url[]" value="" placeholder="Enter image URL"><a class="gallery-image-upload button button-primary button-large image-upload" href="#">Upload</a>
+                           <label class="uig-gallery-form-control-lebel">Upload Image or Enter URL</label>
+                            <div class="uig-image-field-wrappper">
+                                <input class="uig-gallery-form-control uig-image-url" type="text" name="uig-gallery-image-url[]" value="" placeholder="Enter image URL"><a class="uig-gallery-image-upload button button-primary button-large uig-image-upload" href="#">Upload</a>
                             </div>
                         </li>
                         <li>
-                           <label class="gallery-form-control-lebel">Image Title</label>
-                            <input class="gallery-form-control" type="text" name="image-title" value="" placeholder="Enter image title">
+                           <label class="uig-gallery-form-control-lebel">Image Title</label>
+                            <input class="uig-gallery-form-control" type="text" name="uig-image-title" value="" placeholder="Enter image title">
                         </li>
                         <li class="filter_category_field hidden-if-image-gallery">
-                            <label class="gallery-form-control-lebel">Filter Category</label>
+                            <label class="uig-gallery-form-control-lebel">Filter Category</label>
                             <?php
                             $args = array(
-                                'taxonomy' => 'filter-category',
-                                'name' => 'filter-category',
-                                'class' => 'filter-category gallery-form-control',
+                                'taxonomy' => 'uig-filter-category',
+                                'name' => 'uig-filter-category',
+                                'class' => 'uig-filter-category uig-gallery-form-control',
                                 'show_option_none' => 'Select a category',
                                 'option_none_value' => '',
                                 'hide_empty' => false
@@ -137,32 +137,32 @@ class UIG_Ultimate_Image_Gallery {
                 </div>
             </div>
         </div>
-        <div id="repeatable-field">
-            <div class="field-item">
-               <div class="repeater-action-buttons">
+        <div id="uig-repeatable-fields">
+            <div class="uig-field-item">
+               <div class="uig-repeater-action-buttons">
                    <span class="dashicons dashicons-move"></span>
-                   <img class="gallery-perview-image" src="">
-                   <div><span class="toggle-button dashicons dashicons-arrow-up-alt2"></span><a href="#" class="remove-field">Remove</a></div>
+                   <img class="uig-gallery-perview-image" src="">
+                   <div><span class="toggle-button dashicons dashicons-arrow-up-alt2"></span><a href="#" class="uig-remove-field">Remove</a></div>
                </div>
-                <div class="gallery-fields-wrapper">
+                <div class="uig-gallery-fields-wrapper">
                     <ul>
                         <li>
-                           <label class="gallery-form-control-lebel">Upload Image or Enter URL</label>
-                            <div class="image-field-wrappper">
-                                <input class="gallery-form-control image-url" type="text" name="gallery-image-url[]" value="" placeholder="Enter image URL"><a class="gallery-image-upload button button-primary button-large image-upload" href="#">Upload</a>
+                           <label class="uig-gallery-form-control-lebel">Upload Image or Enter URL</label>
+                            <div class="uig-image-field-wrappper">
+                                <input class="uig-gallery-form-control uig-image-url" type="text" name="uig-gallery-image-url[]" value="" placeholder="Enter image URL"><a class="uig-gallery-image-upload button button-primary button-large uig-image-upload" href="#">Upload</a>
                             </div>
                         </li>
                         <li>
-                           <label class="gallery-form-control-lebel">Image Title</label>
-                            <input class="gallery-form-control" type="text" name="image-title" value="" placeholder="Enter image title">
+                           <label class="uig-gallery-form-control-lebel">Image Title</label>
+                            <input class="uig-gallery-form-control" type="text" name="uig-image-title" value="" placeholder="Enter image title">
                         </li>
                         <li class="filter_category_field hidden-if-image-gallery">
-                            <label class="gallery-form-control-lebel">Filter Category</label>
+                            <label class="uig-gallery-form-control-lebel">Filter Category</label>
                             <?php
                             $args = array(
-                                'taxonomy' => 'filter-category',
-                                'name' => 'filter-category',
-                                'class' => 'filter-category gallery-form-control',
+                                'taxonomy' => 'uig-filter-category',
+                                'name' => 'uig-filter-category',
+                                'class' => 'uig-filter-category uig-gallery-form-control',
                                 'show_option_none' => 'Select a category',
                                 'option_none_value' => '',
                                 'hide_empty' => false
@@ -174,7 +174,7 @@ class UIG_Ultimate_Image_Gallery {
                 </div>
             </div>
         </div>
-        <div class="add-more-wrapper"><a href="#" id="add-field"><span class="dashicons dashicons-plus-alt2"></span> Add image</a></div>
+        <div class="uig-add-more-wrapper"><a href="#" id="uig-add-field"><span class="dashicons dashicons-plus-alt2"></span> Add image</a></div>
     </div>
     
     
@@ -188,9 +188,9 @@ class UIG_Ultimate_Image_Gallery {
     }
     
     public function uig_shortcode_metabox_callback(){
-        $bafg_scode = isset($_GET['post']) ? '[uig_image_gallery id="'.$_GET['post'].'"]' : '';
+        $uig_scode = isset($_GET['post']) ? '[uig_image_gallery id="'.$_GET['post'].'"]' : '';
         ?>
-        <input type="text" name="bafg_display_shortcode" class="uig_display_shortcode" value="<?php echo esc_attr($bafg_scode); ?>" readonly>
+        <input type="text" name="uig_display_shortcode" class="uig_display_shortcode" value="<?php echo esc_attr($uig_scode); ?>" readonly>
 
         <div id="uig_shortcode_copied_notice">Shortcode Copied!</div>
         
@@ -215,41 +215,25 @@ class UIG_Ultimate_Image_Gallery {
     }
     
     
-    public function uig_image_viewer_function(){
-        load_plugin_textdomain('uig_image_viewer', false, dirname(__FILE__).'/language');
-        
-        register_post_type('uig-image-post',array(
+    public function ultimate_image_gallery_function(){
+        load_plugin_textdomain('ultimate_image_gallery', false, dirname(__FILE__).'/language');
+		
+        register_post_type('uig_image_gallery', array(
             'labels'=>array(
                 'name'=>'Ultimate Gallery',
-                'all_items'=>'All Images',
-                'add_new'=>'Add Image',
-                'add_new_item' => 'Add new Image',
-                'edit_item'  => 'Edit Image',
-                'view_items' => 'View Images',
-                'not_found' => 'No image found',
-                'not_found_in_trash' => 'No image found in trash',
+                'all_items'=>'All Galleries',
+                'add_new'=>'Add Gallery',
+                'add_new_item' => 'Add new Gallery',
+                'edit_item'  => 'Edit Gallery',
+                'view_items' => 'View Galleries',
+                'not_found' => 'No gallery found',
+                'not_found_in_trash' => 'No gallery found in trash',
             ),
             'public'=>true,
             'menu_icon'=>'dashicons-format-image',
             'supports'=>array('title')
         ));
         
-        register_post_type('uig-filter-gallery',array(
-            'labels'=>array(
-                'name'=>'Filter Gallery',
-                'all_items'=>'Filter Galleries',
-                'add_new'=>'Create Filter Gallery',
-                'add_new_item' => 'Create new Filter Gallery',
-                'edit_item'  => 'Edit Filter Gallery',
-                'view_items' => 'View Filter Galleries',
-                'not_found' => 'No filter gallery found',
-                'not_found_in_trash' => 'No filter gallery found in trash',
-            ),
-            'public'=>true,
-            'show_in_menu' => 'edit.php?post_type=uig-image-post',
-            'menu_icon'=>'dashicons-format-image',
-            'supports'=>array('title')
-        ));
     }
     
     function uig_register_private_taxonomy() {
@@ -260,13 +244,13 @@ class UIG_Ultimate_Image_Gallery {
             'hierarchical' => false
         );
 
-        register_taxonomy( 'filter-category', 'uig-image-post', $args );
+        register_taxonomy( 'uig-filter-category', 'uig_image_gallery', $args );
     }
     
     
     public function uig_custom_columns($columns) {
         
-        $columns['uig_gallery_shortcode'] = esc_html__('Shortcode', 'bafg');
+        $columns['uig_gallery_shortcode'] = esc_html__('Shortcode', 'ultimate_image_gallery');
         unset($columns['date']);
         $columns['date'] = __( 'Date' );
         
@@ -281,14 +265,13 @@ class UIG_Ultimate_Image_Gallery {
         }
     }
     
-    public function uig_image_viewer_scripts(){
+    public function ultimate_image_gallery_scripts(){
         //CSS style
         wp_enqueue_style('uig-viewercss', plugins_url(BG_CSS_URI.'viewer.css',__FILE__));
         wp_enqueue_style('uig-imageviewercss', plugins_url(BG_CSS_URI.'imageviewer.css',__FILE__));
         
         //JS script
         wp_enqueue_script('uig-isotope.pkgd.min', '//unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js',array('jquery'),null,true);
-        
         
         wp_enqueue_script('uig-viewerjs', plugins_url(BG_JS_URI.'viewer.js',__FILE__),array('jquery'),null,true);
         wp_enqueue_script('uig-imageviewerjs', plugins_url(BG_JS_URI.'imageviewer.js',__FILE__),array('jquery','uig-isotope.pkgd.min'),null,true);
@@ -307,7 +290,7 @@ class UIG_Ultimate_Image_Gallery {
     }
     
     
-    public function uig_image_viewer_scode($img_attr, $img_content){
+    public function ultimate_image_gallery_scode($img_attr, $img_content){
         //Shortcode [uig_image_gallery title="your title" description="Description"][/uig_image_gallery]
         $scode_atts = shortcode_atts(array(
                 'id'=>''
@@ -340,6 +323,7 @@ class UIG_Ultimate_Image_Gallery {
                             ?>
                                 <li>
                                     <img src="<?php echo esc_url($url) ?>" alt="">
+                                    <h2 class="uig-image-title">Image title</h2>
                                 </li>
                             <?php
                         }
@@ -365,10 +349,10 @@ class UIG_Ultimate_Image_Gallery {
         $categories = explode(',',$categories);
         
         $args = array(
-            'post_type' => 'uig-image-post',
+            'post_type' => 'uig_image_gallery',
             'tax_query' => array(
                 array(
-                    'taxonomy' => 'filter-category',
+                    'taxonomy' => 'uig-filter-category',
                     'field'    => 'term_id',
                     'terms'    => $categories,
                 ),
@@ -392,7 +376,7 @@ class UIG_Ultimate_Image_Gallery {
                    
                    <?php 
                    foreach( $categories as $category_id ){
-                       $term = get_term_by('id', $category_id, 'filter-category');
+                       $term = get_term_by('id', $category_id, 'uig-filter-category');
                        ?>
                        <button class="uig-filter-button" data-filter="<?php echo esc_attr($term->slug); ?>"><?php echo esc_html($term->name); ?></button>
                         <?php
@@ -409,7 +393,7 @@ class UIG_Ultimate_Image_Gallery {
                         
                         $image_ids = ( $image_ids = get_post_meta( $id, 'uig_gallery_image_ids', true ) ) ? explode(',',$image_ids) : array();
                         
-                        $term_obj_list = get_the_terms( $id, 'filter-category' );
+                        $term_obj_list = get_the_terms( $id, 'uig-filter-category' );
                         $terms_string = join(' ', wp_list_pluck($term_obj_list, 'slug'));
                         
                         foreach( $image_ids as $i => $image_id ) {
@@ -418,6 +402,7 @@ class UIG_Ultimate_Image_Gallery {
                                 ?>
                                     <li class="uig-filter-item <?php echo esc_attr($terms_string); ?>">
                                         <img src="<?php echo esc_url($url) ?>" alt="">
+                                        <h2 class="uig-image-title">Image title</h2>
                                     </li>
                                 <?php
                             }
