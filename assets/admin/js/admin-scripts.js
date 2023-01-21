@@ -105,7 +105,7 @@
         e.preventDefault();
         
         var imageTag = $(this).parents('.uig-field-item').find('.uig-gallery-perview-image');
-        var imageUrl = $(this).parent('.uig-image-field-wrappper').find('input[name="uig-gallery-image-url[]"]');
+        var imageUrl = $(this).parent('.uig-image-field-wrappper').find('input[name="uig_gallery_image_url[]"]');
         
         // If the media frame already exists, reopen it.
         if (gallery_image_file_frame) {
@@ -145,9 +145,16 @@
 
           // Add a new field
           $('#uig-add-field').click(function (e) {
-              e.preventDefault();
-              $('#uig-repeatable-fields').append($('.uig-field-item-clone').html());
+          	e.preventDefault();
+          	//$('#uig-repeatable-fields').append($('.uig-field-item-clone').html());
+          	var original = document.getElementById("uig_field_item_clone");
+          	var clone = original.cloneNode(true);
+          	clone.innerHTML = clone.innerHTML.replaceAll("xxx_", "");
+          	document.getElementById("uig-repeatable-fields").appendChild(clone);
           });
+		  
+		  
+
 
           // Remove a field
           $(document).on('click', '.uig-remove-field', function (e) {
