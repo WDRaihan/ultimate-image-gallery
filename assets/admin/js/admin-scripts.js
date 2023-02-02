@@ -141,7 +141,13 @@
     
       $(document).ready(function () {
           // Make the field sortable
-          $('#uig-repeatable-fields').sortable();
+          $('#uig-repeatable-fields').sortable({
+			  	placeholder: "ui-state-highlight",
+			  	start: function(event, ui) {
+					var height = ui.item.height();
+					ui.placeholder.height(height);
+				}
+		  });
 
           // Add a new field
           $('#uig-add-field').click(function (e) {
@@ -173,9 +179,13 @@
     $(document).ready(function () {
         $('.uig_gallery_type').on('change', function () {
             if ($(this).val() == 'filterable_gallery') {
-                $('.filter_category_field').removeClass('hidden-if-image-gallery');
+                $('.uig_filter_category_field').removeClass('hidden-if-image-gallery');
+                $('.uig_filter_category_field .uig-filter-category').addClass('uig-border-focus');
+				setTimeout(function() {
+					$('.uig_filter_category_field .uig-filter-category').removeClass('uig-border-focus');
+				}, 500);
             } else {
-                $('.filter_category_field').addClass('hidden-if-image-gallery');
+                $('.uig_filter_category_field').addClass('hidden-if-image-gallery');
             }
         });
     });

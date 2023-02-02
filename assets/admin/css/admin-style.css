@@ -198,3 +198,10 @@ a.button.button-primary.button-large.uig-image-upload {
 .border-bottom-0 {
     border-bottom: 0
 }
+.uig-border-focus {
+    border-color: #ff1414 !important;
+    box-shadow: 0px 0px 5px #ff1414 !important;
+}
+.ui-state-highlight {
+    border: 2px dashed #6f6f6f;
+}

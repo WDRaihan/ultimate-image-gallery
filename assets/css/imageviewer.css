@@ -77,8 +77,15 @@ li.hide-item {
     }
 }
 
-
-
+.viewer-list > li {
+    width: 38px;
+    margin: 0;
+    padding: 0;
+}
+.viewer-toolbar li {
+    margin: 0;
+    padding: 0;
+}
 /*
 .img-viewer #images {
   column-width: 200px;

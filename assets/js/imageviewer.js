@@ -23,7 +23,7 @@
     // Get the Viewer.js instance after initialized
     //var viewer = $image.data('viewer');
     
-    jQuery(document).on('click','.uig-filter-item',function(){
+    jQuery(document).on('click','.uig-gallery-item',function(){
         if ( jQuery('.toolbar-top-buttons').length < 1 ) {
           jQuery('li.viewer-prev, li.viewer-play, li.viewer-next').wrapAll('<div class="toolbar-top-buttons"></div>');
         }
@@ -69,7 +69,7 @@
 			
 			var eachWraper = jQuery(this);
 
-			var eachItem = jQuery( '.uig-filter-item', this );
+			var eachItem = jQuery( '.uig-gallery-item', this );
 
 			jQuery( '.uig_gallery_filter', eachWraper ).isotope({ filter: '*' });
 
