@@ -65,7 +65,7 @@
     
     /*jQuery(document).ready(function(){
 		
-		jQuery( '.uig-filter-gallery-wraper' ).each(function(){
+		jQuery( '.uig-filter-gallery-wrapper' ).each(function(){
 			
 			var eachWraper = jQuery(this);
 

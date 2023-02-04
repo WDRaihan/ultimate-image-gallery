@@ -58,7 +58,7 @@
 	<div id="uig-repeatable-fields">
 		<?php 
 		$uig_gallery_items = !empty(get_post_meta($post->ID,'uig_gallery_items', true)) ? get_post_meta($post->ID,'uig_gallery_items', true) : array(); 
-		
+		$xx = 0;
 		foreach( $uig_gallery_items as $uig_gallery_item ):
 		?>
 		<div class="uig-field-item">
@@ -84,12 +84,13 @@
 						<?php
                             $args = array(
                                 'taxonomy' => 'uig-filter-category',
-                                'name' => 'uig_filter_category[]',
+                                'name' => 'uig_filter_category['.$xx.']',
                                 'class' => 'uig-filter-category uig-gallery-form-control',
                                 'show_option_none' => esc_html__('Select a category','ultimate_image_gallery'),
                                 'option_none_value' => '',
                                 'hide_empty' => false,
-								'selected' => esc_attr($uig_gallery_item['filter_category'])
+								'selected' => esc_attr($uig_gallery_item['filter_category']),
+								'multiple'	=> true
                             );
                             wp_dropdown_categories( $args );
                             ?>
@@ -97,7 +98,7 @@
 				</ul>
 			</div>
 		</div>
-		<?php endforeach; //end item?>
+		<?php $xx++; endforeach; //end item?>
 	</div>
 	<div class="uig-add-more-wrapper"><a href="#" id="uig-add-field"><span class="dashicons dashicons-plus-alt2"></span> <?php echo esc_html__('Add image','ultimate_image_gallery'); ?></a></div>
 </div>

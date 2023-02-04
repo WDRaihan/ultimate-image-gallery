@@ -61,7 +61,7 @@ class UIG_Meta_Fields {
 			$all_items[] = array(
 				'image_url'	=> sanitize_url( $item ),
 				'image_title' => sanitize_text_field( $_POST['uig_image_title'][$k] ),
-				'filter_category' => esc_attr( $_POST['uig_filter_category'][$k] )
+				'filter_category' => $_POST['uig_filter_category'][$k]
 			);
 		}
 		update_post_meta( $post_id, 'uig_gallery_items', $all_items );

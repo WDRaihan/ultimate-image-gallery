@@ -129,32 +129,37 @@ class UIG_Ultimate_Image_Gallery {
     public function uig_filter_gallery_scode($img_attr, $img_content = null){
         //Shortcode [uig_image_gallery title="your title" description="Description"][/uig_image_gallery]
         $scode_atts = shortcode_atts(array(
-                'categories'=>'',
-                'title' => ''
+                'id'=>''
             ),$img_attr);
-            extract($scode_atts);
+        extract($scode_atts);
 
         ob_start();
         
-        $categories = explode(',',$categories);
         
-        $args = array(
-            'post_type' => 'uig_image_gallery',
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'uig-filter-category',
-                    'field'    => 'term_id',
-                    'terms'    => $categories,
-                ),
-            ),
-        );
-        $query = new WP_Query( $args );
-        
-        require_once plugin_dir_path( __FILE__ ) . 'templates/filter-gallery.php';
+		
     	return ob_get_clean();
     }
 }
 new UIG_Ultimate_Image_Gallery();
+
+
+add_filter( 'wp_dropdown_cats', 'wp_dropdown_cats_multiple', 10, 2 );
+
+function wp_dropdown_cats_multiple( $output, $r ) {
+
+    if( isset( $r['multiple'] ) && $r['multiple'] ) {
+
+         $output = preg_replace( '/^<select/i', '<select multiple', $output );
+
+        $output = str_replace( "name='{$r['name']}'", "name='{$r['name']}[]'", $output );
+
+        foreach ( array_map( 'trim', explode( ",", $r['selected'] ) ) as $value )
+            $output = str_replace( "value=\"{$value}\"", "value=\"{$value}\" selected", $output );
+
+    }
+
+    return $output;
+}
 
 //add_action("wp_ajax_save_repeatable_fields", "save_repeatable_fields");
 //
