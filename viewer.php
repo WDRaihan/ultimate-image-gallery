@@ -26,7 +26,7 @@ class UIG_Ultimate_Image_Gallery {
         add_shortcode('uig_image_gallery', array($this, 'ultimate_image_gallery_scode'));
         add_shortcode('uig_filter_gallery', array($this, 'uig_filter_gallery_scode'));
         
-        add_action( 'init', array($this, 'uig_register_private_taxonomy'), 0 );
+        add_action( 'init', array($this, 'uig_register_private_taxonomy') );
         
         // admin column
         add_filter('manage_uig_image_gallery_posts_columns', array($this, 'uig_custom_columns' ), 10);
@@ -58,17 +58,32 @@ class UIG_Ultimate_Image_Gallery {
         
     }
     
-    function uig_register_private_taxonomy() {
-        $args = array(
+    public function uig_register_private_taxonomy() {
+        $taxonomy = 'uig-filter-category';
+		$args = array(
             'label'        => __( 'Filter category', 'ultimate_image_gallery' ),
             'public'       => true,
             'rewrite'      => false,
-            'hierarchical' => false
+            'hierarchical' => true
         );
 
-        register_taxonomy( 'uig-filter-category', 'uig_image_gallery', $args );
+        register_taxonomy( $taxonomy, 'uig_image_gallery', $args );
+		
+		//Create Uncategorized term
+		$uncategorized = array(
+			'name' => 'Uncategorized',
+			'slug' => 'uncategorized',
+		);
+		
+		$term = wp_insert_term( $uncategorized['name'], $taxonomy, array(
+			'slug' => $uncategorized['slug'],
+		));
+		
+		// Set the term as default for the taxonomy
+		if ( !is_wp_error( $term ) ) {
+			update_option($taxonomy . "_default", $term['term_id']);
+		}
     }
-    
     
     public function uig_custom_columns($columns) {
         
@@ -121,7 +136,7 @@ class UIG_Ultimate_Image_Gallery {
 
         ob_start();
 
-        require_once plugin_dir_path( __FILE__ ) . 'templates/image-gallery.php';
+        require_once plugin_dir_path( __FILE__ ) . 'templates/gallery.php';
 
     	return ob_get_clean();
     }
@@ -142,24 +157,6 @@ class UIG_Ultimate_Image_Gallery {
 }
 new UIG_Ultimate_Image_Gallery();
 
-
-add_filter( 'wp_dropdown_cats', 'wp_dropdown_cats_multiple', 10, 2 );
-
-function wp_dropdown_cats_multiple( $output, $r ) {
-
-    if( isset( $r['multiple'] ) && $r['multiple'] ) {
-
-         $output = preg_replace( '/^<select/i', '<select multiple', $output );
-
-        $output = str_replace( "name='{$r['name']}'", "name='{$r['name']}[]'", $output );
-
-        foreach ( array_map( 'trim', explode( ",", $r['selected'] ) ) as $value )
-            $output = str_replace( "value=\"{$value}\"", "value=\"{$value}\" selected", $output );
-
-    }
-
-    return $output;
-}
 
 //add_action("wp_ajax_save_repeatable_fields", "save_repeatable_fields");
 //

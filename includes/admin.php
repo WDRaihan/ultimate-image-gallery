@@ -29,9 +29,7 @@ class UIG_Meta_Fields {
         ?>
         <input type="text" name="uig_display_shortcode" class="uig_display_shortcode" value="<?php echo esc_attr($uig_scode); ?>" readonly>
 
-        <div id="uig_shortcode_copied_notice">Shortcode Copied!</div>
-        
-        
+        <div id="uig_shortcode_copied_notice"><?php echo esc_html__('Shortcode Copied!', 'ultimate_image_gallery'); ?></div>
         <?php
     }
 
@@ -58,10 +56,16 @@ class UIG_Meta_Fields {
 		//Gallery content: image, title, category
 		$all_items = array();
 		foreach($_POST['uig_gallery_image_url'] as $k=>$item){
+			$filter_category = $_POST['uig_filter_category'][$k];
+			if(empty(array_filter($filter_category))){
+				$filter_category = array();
+			}else{
+				$filter_category = array_map( 'intval', (array) $filter_category );
+			}
 			$all_items[] = array(
 				'image_url'	=> sanitize_url( $item ),
 				'image_title' => sanitize_text_field( $_POST['uig_image_title'][$k] ),
-				'filter_category' => $_POST['uig_filter_category'][$k]
+				'filter_category' => $filter_category
 			);
 		}
 		update_post_meta( $post_id, 'uig_gallery_items', $all_items );

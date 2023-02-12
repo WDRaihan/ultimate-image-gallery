@@ -18,6 +18,7 @@
         scalable: false,
         rotatable: false,
         movable: true,
+		url: 'hs',
     });
     
     // Get the Viewer.js instance after initialized
@@ -30,6 +31,10 @@
     });
     
     jQuery('.uig-filter-buttons button').on('click', function(){
+		
+		jQuery('.uig-filter-buttons button').removeClass('uig-filter-active');
+		jQuery(this).addClass('uig-filter-active');
+		
         var category = jQuery(this).attr('data-filter');
         
         if( category == '*' ){

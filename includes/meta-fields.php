@@ -38,18 +38,33 @@
 						<input class="uig-gallery-form-control" type="text" name="xxx_uig_image_title[]" value="" placeholder="<?php echo esc_html__('Enter image title','ultimate_image_gallery'); ?>">
 					</li>
 					<li class="uig_filter_category_field <?php echo esc_attr($hide_show_category_field); ?>">
-						<label class="uig-gallery-form-control-lebel">Filter Category</label>
-						<?php
-                            $args = array(
-                                'taxonomy' => 'uig-filter-category',
-                                'name' => 'xxx_uig_filter_category[]',
-                                'class' => 'uig-filter-category uig-gallery-form-control',
-                                'show_option_none' => esc_html__('Select a category','ultimate_image_gallery'),
-                                'option_none_value' => '',
-                                'hide_empty' => false
-                            );
-                            wp_dropdown_categories( $args );
-                            ?>
+						<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Filter Category','ultimate_image_gallery'); ?></label>
+						<select name="xxx_uig_filter_category[]" class="uig-filter-category uig-gallery-form-control">
+							<?php 
+							$taxonomy = 'uig-filter-category';
+							$uig_terms = get_terms( array(
+								'taxonomy' => $taxonomy,
+								'hide_empty' => false,
+							) );
+							
+							$default_term_id = get_option($taxonomy . "_default");
+							
+							// Reorder the terms array to make the default term appear first
+							usort( $uig_terms, function( $a, $b ) use ( $default_term_id ) {
+								if ( $a->term_id == $default_term_id ) {
+									return -1;
+								}
+								if ( $b->term_id == $default_term_id ) {
+									return 1;
+								}
+								return 0;
+							});
+							
+							foreach ( $uig_terms as $uig_term ) {
+								echo '<option value="' . $uig_term->term_id . '">' . $uig_term->name . '</option>';
+							}
+							?>
+						</select>
 					</li>
 				</ul>
 			</div>
@@ -82,18 +97,38 @@
 					<li class="uig_filter_category_field  <?php echo esc_attr($hide_show_category_field); ?>">
 						<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Filter Category','ultimate_image_gallery'); ?></label>
 						<?php
-                            $args = array(
-                                'taxonomy' => 'uig-filter-category',
-                                'name' => 'uig_filter_category['.$xx.']',
-                                'class' => 'uig-filter-category uig-gallery-form-control',
-                                'show_option_none' => esc_html__('Select a category','ultimate_image_gallery'),
-                                'option_none_value' => '',
-                                'hide_empty' => false,
-								'selected' => esc_attr($uig_gallery_item['filter_category']),
-								'multiple'	=> true
-                            );
-                            wp_dropdown_categories( $args );
-                            ?>
+						$filter_category = is_array($uig_gallery_item['filter_category']) ? $uig_gallery_item['filter_category'] : array();
+						?>
+						<select name="uig_filter_category[<?php echo esc_attr($xx); ?>][]" class="uig-filter-category uig-gallery-form-control">
+							<?php
+							$taxonomy = 'uig-filter-category';
+							$uig_terms = get_terms( array(
+								'taxonomy' => $taxonomy,
+								'hide_empty' => false,
+							) );
+							
+							$default_term_id = get_option($taxonomy . "_default");
+							
+							// Reorder the terms array to make the default term appear first
+							usort( $uig_terms, function( $a, $b ) use ( $default_term_id ) {
+								if ( $a->term_id == $default_term_id ) {
+									return -1;
+								}
+								if ( $b->term_id == $default_term_id ) {
+									return 1;
+								}
+								return 0;
+							});
+							
+							foreach ( $uig_terms as $uig_term ) {
+								$selected = '';
+								if(in_array($uig_term->term_id, $filter_category)){
+									$selected = 'selected';
+								}
+								echo '<option value="' . $uig_term->term_id . '" '.$selected.'>' . $uig_term->name . '</option>';
+							}
+							?>
+						</select>
 					</li>
 				</ul>
 			</div>
