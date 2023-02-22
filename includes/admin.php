@@ -1,4 +1,9 @@
 <?php
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+	exit();
+}
+
 class UIG_Meta_Fields {
 	
 	public function __construct(){
@@ -25,7 +30,7 @@ class UIG_Meta_Fields {
     }
      
     public function uig_shortcode_metabox_callback(){
-        $uig_scode = isset($_GET['post']) ? '[uig_image_gallery id="'.$_GET['post'].'"]' : '';
+        $uig_scode = isset($_GET['post']) ? '[uig_gallery id="'.$_GET['post'].'"]' : '';
         ?>
         <input type="text" name="uig_display_shortcode" class="uig_display_shortcode" value="<?php echo esc_attr($uig_scode); ?>" readonly>
 

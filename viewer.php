@@ -4,27 +4,43 @@
 Plugin Name: Ultimate Image Gallery - Image Zoom, Viewer, Lightbox and Filter Gallery
 Author: wdraihan
 Description:This is a beautiful responsive image gallery. You can see each image with 10000% zoom and it has  more features. After installing it, a Gallery menu will be created on your WordPress dashboard, form which you can easily set the image. You can use it as a portfolio gallery, photo gallery,  photo album, image gallery, widget image gallery etc. (You have to use this shortcode "[uig_image_gallery] or [uig_image_gallery title="your title" description="Your description"][/uig_image_gallery]" in your page to show the gallery).
-Version: 1.0
+Version: 1.0.0
 Text Domain: ultimate_image_gallery
 Domain Path: /languages
 */
-/*
-Shortcodes: 
-[ultimate_image_gallery]
-[ultimate_image_gallery]
-*/
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+	exit();
+}
 
 class UIG_Ultimate_Image_Gallery {
     
+	/**
+     * Plugin version
+     *
+     * @var string
+     */
+    public $version = '1.0.0';
+	
+	/**
+     * Gallery shortcode
+     *
+     * @var string
+     */
+    public $shortcode = 'uig_gallery';
+
+	/**
+     * Constructor for the UIG_Ultimate_Image_Gallery class
+     */
     public function __construct(){
         
 		require_once plugin_dir_path( __FILE__ ) . 'includes/admin.php';
 		
-        add_action('init', array($this, 'ultimate_image_gallery_function'));
+        add_action('init', array($this, 'init_image_gallery'));
         add_action('wp_enqueue_scripts', array($this,'ultimate_image_gallery_scripts'));
         add_action('admin_enqueue_scripts', array($this,'admin_scripts'));
-        add_shortcode('uig_image_gallery', array($this, 'ultimate_image_gallery_scode'));
-        add_shortcode('uig_filter_gallery', array($this, 'uig_filter_gallery_scode'));
+        add_shortcode($this->shortcode, array($this, 'ultimate_image_gallery_scode'));
         
         add_action( 'init', array($this, 'uig_register_private_taxonomy') );
         
@@ -36,10 +52,13 @@ class UIG_Ultimate_Image_Gallery {
         define('BG_JS_URI', trailingslashit('assets/js'));
     }
     
-
-    public function ultimate_image_gallery_function(){
-        load_plugin_textdomain('ultimate_image_gallery', false, dirname(__FILE__).'/language');
+	//Initializes the plugin
+    public function init_image_gallery(){
+        
+		//Register plugin textdomain
+		load_plugin_textdomain('ultimate_image_gallery', false, dirname(__FILE__).'/languages');
 		
+		//Register post type
         register_post_type('uig_image_gallery', array(
             'labels'=>array(
                 'name'=>'Ultimate Gallery',
@@ -52,7 +71,7 @@ class UIG_Ultimate_Image_Gallery {
                 'not_found_in_trash' => 'No gallery found in trash',
             ),
             'public'=>true,
-            'menu_icon'=>'dashicons-format-image',
+            'menu_icon'=>'dashicons-images-alt2',
             'supports'=>array('title')
         ));
         
@@ -96,8 +115,7 @@ class UIG_Ultimate_Image_Gallery {
     
     function uig_custom_columns_shortcode($column_name, $id){  
         if($column_name === 'uig_gallery_shortcode') { 
-            $post_id =	$id;
-            $shortcode = 'uig_image_gallery id="' . $post_id . '"';
+            $shortcode = $this->shortcode.' id="' . esc_attr($id) . '"';
             echo "<input type='text' readonly value='[".$shortcode."]'>";
         }
     }
@@ -126,9 +144,8 @@ class UIG_Ultimate_Image_Gallery {
 
     }
     
-    
+    //Gallery shortcode
     public function ultimate_image_gallery_scode($img_attr, $img_content){
-        //Shortcode [uig_image_gallery title="your title" description="Description"][/uig_image_gallery]
         $scode_atts = shortcode_atts(array(
                 'id'=>''
             ),$img_attr);
@@ -141,19 +158,6 @@ class UIG_Ultimate_Image_Gallery {
     	return ob_get_clean();
     }
     
-    public function uig_filter_gallery_scode($img_attr, $img_content = null){
-        //Shortcode [uig_image_gallery title="your title" description="Description"][/uig_image_gallery]
-        $scode_atts = shortcode_atts(array(
-                'id'=>''
-            ),$img_attr);
-        extract($scode_atts);
-
-        ob_start();
-        
-        
-		
-    	return ob_get_clean();
-    }
 }
 new UIG_Ultimate_Image_Gallery();
 

@@ -1,28 +1,14 @@
 ;(function ($) {
     'use strict';
 
-    var $image = $('#image');
-
-    /*$image.viewer({
-        inline: false,
-        scalable: false,
-        rotatable: false,
-        viewed: function () {
-            $image.viewer('zoomTo', 1);
-        }
-    });*/
-
     // View a list of images
-    $('#images').viewer({
+    $('#uig_gallery_images').viewer({
         inline: false,
         scalable: false,
         rotatable: false,
         movable: true,
 		url: 'hs',
     });
-    
-    // Get the Viewer.js instance after initialized
-    //var viewer = $image.data('viewer');
     
     jQuery(document).on('click','.uig-gallery-item',function(){
         if ( jQuery('.toolbar-top-buttons').length < 1 ) {
@@ -38,31 +24,31 @@
         var category = jQuery(this).attr('data-filter');
         
         if( category == '*' ){
-            jQuery('.img-viewer #images li').show();
+            jQuery('.uig-img-viewer #uig_gallery_images li').show();
             
-            jQuery('.img-viewer #images li').removeClass('hide-item');
+            jQuery('.uig-img-viewer #uig_gallery_images li').removeClass('hide-item');
         }else{
             
-            var hasclass = $( '.img-viewer #images li' ).hasClass('hide-item');
+            var hasclass = $( '.uig-img-viewer #uig_gallery_images li' ).hasClass('hide-item');
             
-            jQuery('.img-viewer #images li').addClass('hide-item');
+            jQuery('.uig-img-viewer #uig_gallery_images li').addClass('hide-item');
             
-            jQuery('.img-viewer #images li').addClass('fadeout');
+            jQuery('.uig-img-viewer #uig_gallery_images li').addClass('fadeout');
             
-            jQuery('.img-viewer #images li.'+category+'').show();
-            jQuery('.img-viewer #images li.'+category+'').removeClass('hide-item');
+            jQuery('.uig-img-viewer #uig_gallery_images li.'+category+'').show();
+            jQuery('.uig-img-viewer #uig_gallery_images li.'+category+'').removeClass('hide-item');
             
             if (!hasclass) {
                 
                 setTimeout(function(){
-                    jQuery('.img-viewer #images li.hide-item').hide();
-                    jQuery('.img-viewer #images li').removeClass('fadeout');
+                    jQuery('.uig-img-viewer #uig_gallery_images li.hide-item').hide();
+                    jQuery('.uig-img-viewer #uig_gallery_images li').removeClass('fadeout');
                 }, 150);
                 
             } else {
                 
-                jQuery('.img-viewer #images li.hide-item').hide();
-                jQuery('.img-viewer #images li').removeClass('fadeout');
+                jQuery('.uig-img-viewer #uig_gallery_images li.hide-item').hide();
+                jQuery('.uig-img-viewer #uig_gallery_images li').removeClass('fadeout');
             }
             
         }
