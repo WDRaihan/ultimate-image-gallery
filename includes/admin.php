@@ -4,12 +4,15 @@ if (!defined('ABSPATH')) {
 	exit();
 }
 
-class UIG_Meta_Fields {
+class UIG_ADMIN_FUNCTIONS {
 	
 	public function __construct(){
-		
+		//Gallery post meta boxes
 		add_action( 'add_meta_boxes', array($this,'uig_register_meta_boxes') );
 		add_action( 'save_post', array($this,'uig_save_meta_box' ), 10, 2 );
+		//Posts column
+        add_filter('manage_uig_image_gallery_posts_columns', array($this, 'uig_custom_columns' ), 10);
+        add_action('manage_posts_custom_column', array($this, 'uig_custom_columns_shortcode' ), 10, 2);
 	}
 
 	/**
@@ -79,5 +82,31 @@ class UIG_Meta_Fields {
         update_post_meta( $post_id, 'uig_display_image_title', esc_attr( $_POST['uig_display_image_title'] ) );
         
     }
+	
+	/**
+     * Posts column
+     *
+     * Name: Shortcode
+     */
+	public function uig_custom_columns($columns) {
+        
+        $columns['uig_gallery_shortcode'] = esc_html__('Shortcode', 'ultimate_image_gallery');
+        unset($columns['date']);
+        $columns['date'] = __( 'Date' );
+        
+        return $columns;
+    }
+    
+	/**
+     * Posts column
+     *
+     * Display gallery shortcode
+     */
+    public function uig_custom_columns_shortcode($column_name, $id){  
+        if($column_name === 'uig_gallery_shortcode') { 
+            $shortcode = UIG_GALLERY_SHORTCODE . ' id="' . esc_attr($id) . '"';
+            echo "<input type='text' readonly value='[".$shortcode."]'>";
+        }
+    }
 }
-new UIG_Meta_Fields();
+new UIG_ADMIN_FUNCTIONS();

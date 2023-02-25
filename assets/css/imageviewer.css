@@ -113,16 +113,3 @@ li.hide-item {
     color: #fff;
 	border: 1px solid #16a085;
 }
-/*
-.uig-img-viewer #uig_gallery_images {
-  column-width: 200px;
-  column-gap: 5px;
-}
-
-.uig-img-viewer #uig_gallery_images li {
-  margin-bottom: 7px
-}
-.uig-img-viewer #uig_gallery_images img {
-  width: 100%;
-  cursor: pointer;
-}*/

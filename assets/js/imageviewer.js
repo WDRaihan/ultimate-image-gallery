@@ -7,7 +7,6 @@
         scalable: false,
         rotatable: false,
         movable: true,
-		url: 'hs',
     });
     
     jQuery(document).on('click','.uig-gallery-item',function(){
@@ -16,6 +15,7 @@
         }
     });
     
+	//Filter scripts
     jQuery('.uig-filter-buttons button').on('click', function(){
 		
 		jQuery('.uig-filter-buttons button').removeClass('uig-filter-active');
@@ -53,29 +53,5 @@
             
         }
     });
-    
-    /*jQuery(document).ready(function(){
-		
-		jQuery( '.uig-filter-gallery-wrapper' ).each(function(){
-			
-			var eachWraper = jQuery(this);
-
-			var eachItem = jQuery( '.uig-gallery-item', this );
-
-			jQuery( '.uig_gallery_filter', eachWraper ).isotope({ filter: '*' });
-
-			eachWraper.find( '.uig-filter-buttons' ).on( 'click', '.uig-filter-button', function(){
-
-				var filterValue = jQuery(this).attr('data-filter');
-
-				eachWraper.find( '.uig_gallery_filter' ).isotope({ filter: filterValue });
-
-			} );
-
-		});
-        
-        //jQuery('.uig-filter-button.uig-filter-active').trigger('click');
-	
-	});*/
 
 })(jQuery);

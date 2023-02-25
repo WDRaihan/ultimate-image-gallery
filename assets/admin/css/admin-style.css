@@ -171,6 +171,7 @@
 
 .uig-gallery-perview-image {
     width: 32px;
+	height: 32px;
     position: absolute;
     left: 35px;
     top: -7px;
@@ -210,4 +211,8 @@ a.button.button-primary.button-large.uig-image-upload {
 }
 .ui-state-highlight {
     border: 2px dashed #6f6f6f;
+}
+input.uig_display_shortcode {
+    background: #16a085;
+    color: #fff;
 }

@@ -22,159 +22,33 @@ class UIG_Ultimate_Image_Gallery {
      * @var string
      */
     public $version = '1.0.0';
-	
-	/**
-     * Gallery shortcode
-     *
-     * @var string
-     */
-    public $shortcode = 'uig_gallery';
 
 	/**
      * Constructor for the UIG_Ultimate_Image_Gallery class
      */
     public function __construct(){
-        
+        define( 'UIG_GALLERY_SHORTCODE', 'uig_gallery' );
+		define( 'UIG_PLUGIN_ASSEST', trailingslashit(plugins_url( 'assets', __FILE__ )) );
+		define( 'UIG_CSS_URI', UIG_PLUGIN_ASSEST.'css' );
+        define( 'UIG_JS_URI', UIG_PLUGIN_ASSEST.'js' );
+		
+        add_action('init', array($this, 'localization_setup'));
+		
+		//Require gallery functions
+		require_once plugin_dir_path( __FILE__ ) . 'includes/gallery-functions.php';
+
+		//Require admin functions
 		require_once plugin_dir_path( __FILE__ ) . 'includes/admin.php';
-		
-        add_action('init', array($this, 'init_image_gallery'));
-        add_action('wp_enqueue_scripts', array($this,'ultimate_image_gallery_scripts'));
-        add_action('admin_enqueue_scripts', array($this,'admin_scripts'));
-        add_shortcode($this->shortcode, array($this, 'ultimate_image_gallery_scode'));
-        
-        add_action( 'init', array($this, 'uig_register_private_taxonomy') );
-        
-        // admin column
-        add_filter('manage_uig_image_gallery_posts_columns', array($this, 'uig_custom_columns' ), 10);
-        add_action('manage_posts_custom_column', array($this, 'uig_custom_columns_shortcode' ), 10, 2);
-        
-        define('BG_CSS_URI', trailingslashit('assets/css'));
-        define('BG_JS_URI', trailingslashit('assets/js'));
     }
-    
-	//Initializes the plugin
-    public function init_image_gallery(){
-        
-		//Register plugin textdomain
+	
+	/**
+     * Initialize plugin for localization
+     *
+     * @uses load_plugin_textdomain()
+     */
+	public function localization_setup(){
 		load_plugin_textdomain('ultimate_image_gallery', false, dirname(__FILE__).'/languages');
-		
-		//Register post type
-        register_post_type('uig_image_gallery', array(
-            'labels'=>array(
-                'name'=>'Ultimate Gallery',
-                'all_items'=>'All Galleries',
-                'add_new'=>'Add Gallery',
-                'add_new_item' => 'Add new Gallery',
-                'edit_item'  => 'Edit Gallery',
-                'view_items' => 'View Galleries',
-                'not_found' => 'No gallery found',
-                'not_found_in_trash' => 'No gallery found in trash',
-            ),
-            'public'=>true,
-            'menu_icon'=>'dashicons-images-alt2',
-            'supports'=>array('title')
-        ));
-        
-    }
-    
-    public function uig_register_private_taxonomy() {
-        $taxonomy = 'uig-filter-category';
-		$args = array(
-            'label'        => __( 'Filter category', 'ultimate_image_gallery' ),
-            'public'       => true,
-            'rewrite'      => false,
-            'hierarchical' => true
-        );
-
-        register_taxonomy( $taxonomy, 'uig_image_gallery', $args );
-		
-		//Create Uncategorized term
-		$uncategorized = array(
-			'name' => 'Uncategorized',
-			'slug' => 'uncategorized',
-		);
-		
-		$term = wp_insert_term( $uncategorized['name'], $taxonomy, array(
-			'slug' => $uncategorized['slug'],
-		));
-		
-		// Set the term as default for the taxonomy
-		if ( !is_wp_error( $term ) ) {
-			update_option($taxonomy . "_default", $term['term_id']);
-		}
-    }
-    
-    public function uig_custom_columns($columns) {
-        
-        $columns['uig_gallery_shortcode'] = esc_html__('Shortcode', 'ultimate_image_gallery');
-        unset($columns['date']);
-        $columns['date'] = __( 'Date' );
-        
-        return $columns;
-    }
-    
-    function uig_custom_columns_shortcode($column_name, $id){  
-        if($column_name === 'uig_gallery_shortcode') { 
-            $shortcode = $this->shortcode.' id="' . esc_attr($id) . '"';
-            echo "<input type='text' readonly value='[".$shortcode."]'>";
-        }
-    }
-    
-    public function ultimate_image_gallery_scripts(){
-        //CSS style
-        wp_enqueue_style('uig-viewercss', plugins_url(BG_CSS_URI.'viewer.css',__FILE__));
-        wp_enqueue_style('uig-imageviewercss', plugins_url(BG_CSS_URI.'imageviewer.css',__FILE__));
-        
-        //JS script
-        wp_enqueue_script('uig-isotope.pkgd.min', '//unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js',array('jquery'),null,true);
-        
-        wp_enqueue_script('uig-viewerjs', plugins_url(BG_JS_URI.'viewer.js',__FILE__),array('jquery'),null,true);
-        wp_enqueue_script('uig-imageviewerjs', plugins_url(BG_JS_URI.'imageviewer.js',__FILE__),array('jquery','uig-isotope.pkgd.min'),null,true);
-        
-        /*wp_enqueue_script('uig-isotope.pkgd', '//unpkg.com/isotope-layout@3/dist/isotope.pkgd.js',array('jquery'),null,true);*/
-        
-    }
-    
-    public function admin_scripts(){
-        //CSS style
-        wp_enqueue_style('uig-admin-styles', plugins_url('assets/admin/css/admin-style.css',__FILE__));
-        
-        //JS script
-        wp_enqueue_script('uig-admin-scripts', plugins_url('assets/admin/js/admin-scripts.js',__FILE__),array('jquery'),null,true);
-
-    }
-    
-    //Gallery shortcode
-    public function ultimate_image_gallery_scode($img_attr, $img_content){
-        $scode_atts = shortcode_atts(array(
-                'id'=>''
-            ),$img_attr);
-        extract($scode_atts);
-
-        ob_start();
-
-        require_once plugin_dir_path( __FILE__ ) . 'templates/gallery.php';
-
-    	return ob_get_clean();
-    }
+	}
     
 }
 new UIG_Ultimate_Image_Gallery();
-
-
-//add_action("wp_ajax_save_repeatable_fields", "save_repeatable_fields");
-//
-//function save_repeatable_fields() {
-//  $post_id = intval($_POST["post_id"]);
-//  $fields = $_POST["fields"];
-//
-//  // Sanitize the field values
-//  $fields = array_map(function($field) {
-//    return array_map("sanitize_text_field", $field);
-//  }, $fields);
-//
-//  // Save the field values to post meta
-//  update_post_meta($post_id, "repeatable_fields", $fields);
-//
-//  wp_send_json_success();
-//}
