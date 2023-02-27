@@ -1,18 +1,19 @@
 <?php
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+	exit();
+}
 
 class UIG_Gallery_Functions {
+	
 	public function __construct(){
         
         add_action( 'init', array($this, 'init_plugin') );
-        
 		add_action('wp_enqueue_scripts', array($this,'ultimate_image_gallery_scripts'));
 		add_action('admin_enqueue_scripts', array($this,'admin_scripts'));
-		//Create gallery shortcode
         add_shortcode(UIG_GALLERY_SHORTCODE, array($this, 'ultimate_image_gallery_scode'));
-        
         add_action( 'init', array($this, 'uig_register_taxonomy') );
     }
-	
 	
 	//Initializes the plugin
     public function init_plugin(){
@@ -36,6 +37,7 @@ class UIG_Gallery_Functions {
         
     }
 	
+	//Register taxonomy
 	public function uig_register_taxonomy() {
         $taxonomy = 'uig-filter-category';
 		$args = array(
@@ -63,6 +65,7 @@ class UIG_Gallery_Functions {
 		}
     }
     
+	//Enqueue scripts
     public function ultimate_image_gallery_scripts(){
         //CSS style
         wp_enqueue_style('uig-viewercss', UIG_CSS_URI.'/viewer.css');
@@ -73,6 +76,7 @@ class UIG_Gallery_Functions {
         wp_enqueue_script('uig-imageviewerjs', UIG_JS_URI.'/imageviewer.js',array('jquery'),null,true);        
     }
 	
+	//Enqueue admin scripts
     public function admin_scripts(){
         //CSS style
         wp_enqueue_style('uig-admin-styles', UIG_PLUGIN_ASSEST.'admin/css/admin-style.css');

@@ -7,8 +7,10 @@
         scalable: false,
         rotatable: false,
         movable: true,
+		maxZoomRatio: 3,
     });
     
+	//Wrap media buttons
     jQuery(document).on('click','.uig-gallery-item',function(){
         if ( jQuery('.toolbar-top-buttons').length < 1 ) {
           jQuery('li.viewer-prev, li.viewer-play, li.viewer-next').wrapAll('<div class="toolbar-top-buttons"></div>');

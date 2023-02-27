@@ -1,12 +1,13 @@
 <?php 
-
 /*
-Plugin Name: Ultimate Image Gallery - Image Zoom, Viewer, Lightbox and Filter Gallery
-Author: wdraihan
-Description:This is a beautiful responsive image gallery. You can see each image with 10000% zoom and it has  more features. After installing it, a Gallery menu will be created on your WordPress dashboard, form which you can easily set the image. You can use it as a portfolio gallery, photo gallery,  photo album, image gallery, widget image gallery etc. (You have to use this shortcode "[uig_image_gallery] or [uig_image_gallery title="your title" description="Your description"][/uig_image_gallery]" in your page to show the gallery).
-Version: 1.0.0
-Text Domain: ultimate_image_gallery
-Domain Path: /languages
+* Plugin Name: Ultimate Image Gallery
+* Description: This plugin provides a range of features to enhance the presentation of images on a website. It includes image zoom, viewer, lightbox, and filter gallery functionality.
+* Version: 1.0.0
+* Author: WDRaihan
+* Author URI: https://wdraihan.com/
+* Text Domain: ultimate_image_gallery
+* Domain Path: /languages
+* License: GPL-2.0+
 */
 
 // Exit if accessed directly
