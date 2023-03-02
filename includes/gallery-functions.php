@@ -93,7 +93,7 @@ class UIG_Gallery_Functions {
 
         ob_start();
 
-        require_once plugin_dir_path( __FILE__ ) . '../templates/gallery.php';
+        include plugin_dir_path( __FILE__ ) . '../templates/gallery.php';
 
     	return ob_get_clean();
     }

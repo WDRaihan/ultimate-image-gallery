@@ -1,4 +1,4 @@
-<div class="uig-img-viewer">
+<div class="uig-img-viewer uig-img-viewer-<?php echo esc_attr($id); ?>" gallery_id="<?php echo esc_attr($id); ?>">
 <?php
 	$uig_gallery_type = !empty(get_post_meta($id, 'uig_gallery_type', true)) ? get_post_meta($id, 'uig_gallery_type', true) : 'image_gallery';
 	$gallery_items = !empty(get_post_meta($id,'uig_gallery_items', true)) ? get_post_meta($id,'uig_gallery_items', true) : array();
@@ -11,10 +11,10 @@
 	<div class="<?php echo esc_attr($filter_wrapper_class); ?>">
 		<?php
 		if( $uig_gallery_type == 'filterable_gallery' ){
-			include_once 'filter-buttons.php';
+			include 'filter-buttons.php';
 		}
 		?>
-		<ul id="uig_gallery_images">
+		<ul id="uig_gallery_images_<?php echo esc_attr($id); ?>" class="uig_gallery_images">
 			<?php 
 			$display_image_title = !empty(get_post_meta($id, 'uig_display_image_title', true)) ? get_post_meta($id, 'uig_display_image_title', true) : '';
 
