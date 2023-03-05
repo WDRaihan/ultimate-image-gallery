@@ -6,7 +6,7 @@ Tested up to: 6.1
 Requires PHP: 5.2.4
 Stable tag: 1.0.0
 License: GPL-2.0+
-License URI: License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 This plugin provides a range of features to enhance the presentation of images on a website. It includes image zoom, viewer, lightbox, and filter gallery functionality.
 
@@ -29,17 +29,8 @@ Overall, the Ultimate Image Gallery is an excellent plugin for anyone looking to
 4. Install and activate the plugin.
 
 == Frequently Asked Questions ==
- 	= How do I use the plugin? =
-Ans: First you have to install it. Then go to your wp Dashboard>BG Gallery and upload your image. You have to use this shortcode "[uig-image-viewer] or [uig-image-viewer title="your title" description="Your description"][/uig-image-viewer]" in your page to show the gallery.
-
-== Screenshots ==
-1. This is screenshot one
-2. This is screenshot two
-3. This is screenshot three
-4. This is screenshot four
-
-== Changelog ==
-List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-Upgrade notices describe the reason a user should upgrade. No more than 300 characters.
+ 	= How do I create a gallery? =
+Ans: Go to 'Ultimate Gallery' from your admin dashboard.
+1. Create a gallery
+2. Copy the gallery shortcode
+3. And paste the shortcode where you want to display the gallery. If you want to display the gallery in a PHP file, you have to use it - <?php echo do_shortcode('[uig_gallery id="xxx"]'); ?>. 

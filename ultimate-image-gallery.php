@@ -3,7 +3,7 @@
 * Plugin Name: Ultimate Image Gallery
 * Description: This plugin provides a range of features to enhance the presentation of images on a website. It includes image zoom, viewer, lightbox, and filter gallery functionality.
 * Version: 1.0.0
-* Author: WDRaihan
+* Author: Raihan
 * Author URI: https://wdraihan.com/
 * Text Domain: ultimate_image_gallery
 * Domain Path: /languages

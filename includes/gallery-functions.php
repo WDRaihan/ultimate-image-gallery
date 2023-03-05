@@ -69,11 +69,11 @@ class UIG_Gallery_Functions {
     public function ultimate_image_gallery_scripts(){
         //CSS style
         wp_enqueue_style('uig-viewercss', UIG_CSS_URI.'/viewer.css');
-        wp_enqueue_style('uig-imageviewercss', UIG_CSS_URI.'/imageviewer.css');
+        wp_enqueue_style('uig-styles', UIG_CSS_URI.'/styles.css');
         
         //JS script
         wp_enqueue_script('uig-viewerjs', UIG_JS_URI.'/viewer.js',array('jquery'),null,true);
-        wp_enqueue_script('uig-imageviewerjs', UIG_JS_URI.'/imageviewer.js',array('jquery'),null,true);        
+        wp_enqueue_script('uig-scripts', UIG_JS_URI.'/scripts.js',array('jquery'),null,true);        
     }
 	
 	//Enqueue admin scripts
