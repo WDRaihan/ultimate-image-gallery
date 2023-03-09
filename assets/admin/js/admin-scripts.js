@@ -1,104 +1,5 @@
-// click event
-;
-(function ($) {
+;(function ($) {
 	"use strict";
-
-	$('.uig-zoom-gallery-upload-button').click(function (event) { // button click
-		// prevent default link click event
-		event.preventDefault();
-
-		const button = $(this)
-		// we are going to use <input type="hidden"> to store image IDs, comma separated
-		const hiddenField = button.prev()
-		const hiddenFieldValue = hiddenField.val().split(',')
-
-		const customUploader = wp.media({
-			title: 'Insert images',
-			library: {
-				type: 'image'
-			},
-			button: {
-				text: 'Use these images'
-			},
-			multiple: true
-		}).on('select', function () {
-
-			// get selected images and rearrange the array
-			let selectedImages = customUploader.state().get('selection').map(item => {
-				item.toJSON();
-				return item;
-			})
-
-			selectedImages.map(image => {
-				// add every selected image to the <ul> list
-				$('.uig-zoom-gallery-metabox').append('<li data-id="' + image.id + '"><span class="uig-zoom-gallery-image" style="background-image:url(' + image.attributes.url + ')"></span><a title="Remove" href="#" class="uig-gallery-image-remove">×</a></li>');
-				// and to hidden field
-				hiddenFieldValue.push(image.id)
-			});
-
-			// refresh sortable
-			$('.uig-zoom-gallery-metabox').sortable('refresh');
-			// add the IDs to the hidden field value
-			hiddenField.val(hiddenFieldValue.join());
-
-		}).open();
-	});
-
-	// remove image event
-	$(document).on('click', '.uig-gallery-image-remove', function (event) {
-
-		event.preventDefault();
-
-		const button = $(this);
-		const imageId = button.parent().data('id');
-		const container = button.parent().parent();
-		const hiddenField = container.parent().find('.uig-image-ids');
-		const hiddenFieldValue = hiddenField.val().split(",");
-		const i = hiddenFieldValue.indexOf(imageId.toString());
-
-		// remove certain array element
-		if (i != -1) {
-			hiddenFieldValue.splice(i, 1);
-		}
-
-		button.parent().remove();
-
-		// add the IDs to the hidden field value 
-		hiddenField.val(hiddenFieldValue.join());
-
-		// refresh sortable
-		container.sortable('refresh');
-
-	});
-
-	// reordering the images with drag and drop
-	$('.uig-zoom-gallery-metabox').sortable({
-		items: 'li',
-		cursor: '-webkit-grabbing', // mouse cursor
-		scrollSensitivity: 40,
-		/*
-		You can set your custom CSS styles while this element is dragging
-		start:function(event,ui){
-			ui.item.css({'background-color':'grey'});
-		},
-		*/
-		stop: function (event, ui) {
-			ui.item.removeAttr('style');
-
-			let sort = new Array() // array of image IDs
-			const container = $(this) // .uig-zoom-gallery-metabox
-
-			// each time after dragging we resort our array
-			container.find('li').each(function (index) {
-				sort.push($(this).attr('data-id'));
-			});
-			// add the array value to the hidden input field
-
-			container.parent().find('.uig-image-ids').val(sort.join());
-			// console.log(sort);
-		}
-	});
-
 
 	// Uploading files
 	$(document).on('click', '.uig-gallery-image-upload', function (e) {
@@ -138,29 +39,32 @@
 		gallery_image_file_frame.open();
 	});
 
-	//new codes
-
 	//Replace category field name
 	function uig_replace_filter_category_name_attr() {
 		$("#uig-repeatable-fields .uig-field-item").each(function (index) {
 			$('.uig_filter_category_field', this).find('.uig-filter-category').attr('name', 'uig_filter_category[' + index + '][]');
 		});
 	}
+	
+	//Fields sortable
 	$(document).ready(function () {
 		// Make the field sortable
-		$('#uig-repeatable-fields').sortable({
-			placeholder: "ui-state-highlight",
-			start: function (event, ui) {
-				var height = ui.item.height();
-				ui.placeholder.height(height);
+		var uig_repeatable_fields = $('#uig-repeatable-fields');
+		if(uig_repeatable_fields.length > 0) {
+			uig_repeatable_fields.sortable({
+				placeholder: "ui-state-highlight",
+				start: function (event, ui) {
+					var height = ui.item.height();
+					ui.placeholder.height(height);
 
-				uig_replace_filter_category_name_attr();
-			},
-			stop: function (event, ui) {
-				uig_replace_filter_category_name_attr();
-			}
-		});
-
+					uig_replace_filter_category_name_attr();
+				},
+				stop: function (event, ui) {
+					uig_replace_filter_category_name_attr();
+				}
+			});
+		}
+		
 		// Add a new field
 		$('#uig-add-field').click(function (e) {
 			e.preventDefault();
@@ -200,10 +104,6 @@
 			}
 		});
 	});
-
-	//end new codes
-
-
 
 	/*Copy shortcode*/
 	jQuery('.uig_display_shortcode').on('click', function () {

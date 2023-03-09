@@ -61,7 +61,7 @@
 							});
 							
 							foreach ( $uig_terms as $uig_term ) {
-								echo '<option value="' . $uig_term->term_id . '">' . $uig_term->name . '</option>';
+								echo '<option value="' . esc_attr($uig_term->term_id) . '">' . esc_html($uig_term->name) . '</option>';
 							}
 							?>
 						</select>
@@ -125,7 +125,7 @@
 								if(in_array($uig_term->term_id, $filter_category)){
 									$selected = 'selected';
 								}
-								echo '<option value="' . $uig_term->term_id . '" '.$selected.'>' . $uig_term->name . '</option>';
+								echo '<option value="' . esc_attr($uig_term->term_id) . '" '.esc_attr($selected).'>' . esc_html($uig_term->name) . '</option>';
 							}
 							?>
 						</select>

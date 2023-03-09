@@ -58,18 +58,19 @@ class UIG_ADMIN_FUNCTIONS {
 		
 		//Gallery type
 		if( isset($_POST['uig_gallery_type']) ){
-            update_post_meta( $post_id, 'uig_gallery_type', esc_attr( $_POST['uig_gallery_type'] ) );
+            update_post_meta( $post_id, 'uig_gallery_type', sanitize_text_field( $_POST['uig_gallery_type'] ) );
         }
 		
 		//Gallery content: image, title, category
 		$all_items = array();
 		foreach($_POST['uig_gallery_image_url'] as $k=>$item){
-			$filter_category = $_POST['uig_filter_category'][$k];
-			if(empty(array_filter($filter_category))){
-				$filter_category = array();
+			
+			if( !empty(array_filter($_POST['uig_filter_category'][$k])) ){
+				$filter_category = array_map( 'intval', (array) $_POST['uig_filter_category'][$k] );
 			}else{
-				$filter_category = array_map( 'intval', (array) $filter_category );
+				$filter_category = array();
 			}
+			
 			$all_items[] = array(
 				'image_url'	=> sanitize_url( $item ),
 				'image_title' => sanitize_text_field( $_POST['uig_image_title'][$k] ),
@@ -79,7 +80,7 @@ class UIG_ADMIN_FUNCTIONS {
 		update_post_meta( $post_id, 'uig_gallery_items', $all_items );
 		
 		//Display image title
-        update_post_meta( $post_id, 'uig_display_image_title', esc_attr( $_POST['uig_display_image_title'] ) );
+        update_post_meta( $post_id, 'uig_display_image_title', sanitize_text_field( $_POST['uig_display_image_title'] ) );
         
     }
 	
@@ -104,8 +105,8 @@ class UIG_ADMIN_FUNCTIONS {
      */
     public function uig_custom_columns_shortcode($column_name, $id){  
         if($column_name === 'uig_gallery_shortcode') { 
-            $shortcode = UIG_GALLERY_SHORTCODE . ' id="' . esc_attr($id) . '"';
-            echo "<input type='text' readonly value='[".$shortcode."]'>";
+            $shortcode = UIG_GALLERY_SHORTCODE . ' id="' . $id . '"';
+            echo "<input type='text' readonly value='[".esc_attr($shortcode)."]'>";
         }
     }
 }
