@@ -1,6 +1,6 @@
 === Ultimate Image Gallery - Image Zoom, Viewer, Lightbox and Filter Gallery ===
 Contributors: wdraihan
-Tags: image gallery, image zoom, viewer, lightbox, filter gallery, photography, artist portfolio, WordPress gallery plugin, image zoom plugin, image viewer plugin, lightbox plugin, image filter plugin, WordPress image gallery, professional image display, image showcase plugin, WordPress media gallery, WordPress image viewer, interactive gallery
+Tags: image gallery, image zoom, viewer, lightbox, filter gallery, photography, artist portfolio, wordpress gallery plugin, image zoom plugin, image viewer plugin, lightbox plugin, image filter plugin, WordPress image gallery, professional image display, image showcase plugin, WordPress media gallery, wordpress image viewer, interactive gallery, photo gallery, responsive gallery, best wordpress gallery, gallery blocks, elementor
 Requires at least: 5.4
 Tested up to: 6.1
 Requires PHP: 5.2.4
@@ -34,3 +34,18 @@ Ans: Go to 'Ultimate Gallery' from your admin dashboard.
 1. Create a gallery
 2. Copy the gallery shortcode
 3. And paste the shortcode where you want to display the gallery. If you want to display the gallery in a PHP file, you have to use it - <?php echo do_shortcode('[uig_gallery id="xxx"]'); ?>. 
+
+== Screenshots ==
+
+1. Filte Gallery
+2. Filter Gallery Create
+3. Image Gallery Create
+4. Copy Gallery Shortcode
+5. Lightbox Feature
+6. Zoom Feature
+
+== Changelog ==
+
+= 1.0.0 - 11/Mar/2023 =
+
+Initial release
