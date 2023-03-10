@@ -1,5 +1,5 @@
 === Ultimate Image Gallery - Image Zoom, Viewer, Lightbox and Filter Gallery ===
-Contributors: wdraihan
+Contributors: raihan143
 Tags: image gallery, image zoom, viewer, lightbox, filter gallery, photography, artist portfolio, wordpress gallery plugin, image zoom plugin, image viewer plugin, lightbox plugin, image filter plugin, WordPress image gallery, professional image display, image showcase plugin, WordPress media gallery, wordpress image viewer, interactive gallery, photo gallery, responsive gallery, best wordpress gallery, gallery blocks, elementor
 Requires at least: 5.4
 Tested up to: 6.1
