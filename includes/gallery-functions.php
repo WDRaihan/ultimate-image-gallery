@@ -81,6 +81,17 @@ class UIG_Gallery_Functions {
         //CSS style
         wp_enqueue_style('uig-admin-styles', UIG_PLUGIN_ASSEST.'admin/css/admin-style.css');
         //JS script
+		global $post_type;
+		if( 'uig_image_gallery' == $post_type) {
+			if(function_exists('wp_enqueue_media')) {
+				wp_enqueue_media();
+			}
+			else {
+				wp_enqueue_script('media-upload');
+				wp_enqueue_script('thickbox');
+				wp_enqueue_style('thickbox');
+			}
+		}
         wp_enqueue_script('uig-admin-scripts', UIG_PLUGIN_ASSEST.'admin/js/admin-scripts.js',array('jquery'),null,true);
     }
 	
