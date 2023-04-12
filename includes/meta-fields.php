@@ -140,8 +140,44 @@
 <hr>
 <p>
 	<?php
+		$uig_masonry_layout = !empty(get_post_meta($post->ID, 'uig_masonry_layout', true)) ? get_post_meta($post->ID, 'uig_masonry_layout', true) : '';
+		?>
+	<label for="masonry_layout"><input id="masonry_layout" name="uig_masonry_layout" type="checkbox" value="yes" <?php checked('yes',$uig_masonry_layout,true); ?>> Enable Masonry Layout</label>
+</p>
+<hr>
+<p>
+	<?php
+	$uig_gallery_column = !empty(get_post_meta($post->ID, 'uig_gallery_column', true)) ? get_post_meta($post->ID, 'uig_gallery_column', true) : 'three-column';
+	?>
+	<label for="gallery_column">
+	Item Columns 
+		<select id="gallery_column" name="uig_gallery_column">
+			<option value="two-column" <?php selected('two-column', $uig_gallery_column, true); ?>>2 Columns</option>
+			<option value="three-column" <?php selected('three-column', $uig_gallery_column, true); ?>>3 Columns</option>
+			<option value="four-column" <?php selected('four-column', $uig_gallery_column, true); ?>>4 Columns</option>
+		</select> 
+	</label>
+</p>
+<hr>
+<p>
+	<?php
+	$uig_gallery_item_space = !empty(get_post_meta($post->ID, 'uig_gallery_item_space', true)) ? get_post_meta($post->ID, 'uig_gallery_item_space', true) : 'five-px';
+	?>
+	<label for="gallery_item_space">
+	Item Space 
+		<select id="gallery_item_space" name="uig_gallery_item_space">
+			<option value="zero-px" <?php selected('zero-px', $uig_gallery_item_space, true); ?>>0 PX</option>
+			<option value="five-px" <?php selected('five-px', $uig_gallery_item_space, true); ?>>5 PX</option>
+			<option value="ten-px" <?php selected('ten-px', $uig_gallery_item_space, true); ?>>10 PX</option>
+			<option value="fifteen-px" <?php selected('fifteen-px', $uig_gallery_item_space, true); ?>>15 PX</option>
+		</select> 
+	</label>
+</p>
+<hr>
+<p>
+	<?php
 		$display_image_title = !empty(get_post_meta($post->ID, 'uig_display_image_title', true)) ? get_post_meta($post->ID, 'uig_display_image_title', true) : '';
 		?>
-	<label for="display-title"><input id="display-title" name="uig_display_image_title" type="checkbox" value="yes" <?php checked('yes',$display_image_title,true); ?>> Display image title</label>
+	<label for="display-title"><input id="display-title" name="uig_display_image_title" type="checkbox" value="yes" <?php checked('yes',$display_image_title,true); ?>> Display Image Title</label>
 </p>
 <?php wp_nonce_field( 'uig_meta_box_nonce', 'uig_meta_box_noncename' ); ?>

@@ -79,7 +79,16 @@ class UIG_ADMIN_FUNCTIONS {
 		}
 		update_post_meta( $post_id, 'uig_gallery_items', $all_items );
 		
-		//Display image title
+		//Masonry layout
+        update_post_meta( $post_id, 'uig_masonry_layout', sanitize_text_field( $_POST['uig_masonry_layout'] ) );
+        
+		//Gallery column
+        update_post_meta( $post_id, 'uig_gallery_column', sanitize_text_field( $_POST['uig_gallery_column'] ) );
+
+        //Item space
+        update_post_meta( $post_id, 'uig_gallery_item_space', sanitize_text_field( $_POST['uig_gallery_item_space'] ) );
+
+        //Display image title
         update_post_meta( $post_id, 'uig_display_image_title', sanitize_text_field( $_POST['uig_display_image_title'] ) );
         
     }

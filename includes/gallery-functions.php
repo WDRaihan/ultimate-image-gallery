@@ -73,6 +73,7 @@ class UIG_Gallery_Functions {
         
         //JS script
         wp_enqueue_script('uig-viewerjs', UIG_JS_URI.'/viewer.js',array('jquery'),null,true);
+        wp_enqueue_script('uig-masonry', UIG_JS_URI.'/masonry.pkgd.min.js',array('jquery'),null,true);
         wp_enqueue_script('uig-scripts', UIG_JS_URI.'/scripts.js',array('jquery'),null,true);        
     }
 	
