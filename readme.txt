@@ -4,7 +4,7 @@ Tags: image gallery, image zoom, viewer, lightbox, filter gallery, photography, 
 Requires at least: 5.4
 Tested up to: 6.1
 Requires PHP: 5.2.4
-Stable tag: 1.0.01
+Stable tag: 1.0.02
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ Ans: Go to 'Ultimate Gallery' from your admin dashboard.
 6. Zoom Feature
 
 == Changelog ==
+
+= 1.0.02 - 13/Apr/2023 =
+
+Added masonry layout and column option
 
 = 1.0.01 - 12/Mar/2023 =
 
