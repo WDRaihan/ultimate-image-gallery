@@ -174,10 +174,15 @@
   max-width: 100%;
 }
 
-@media screen and (max-width: 414px) {
-
+@media screen and (max-width: 480px) {
+  .uig_gallery_images.two-column .uig-gallery-item-resizer,
+  .uig_gallery_images.two-column .uig-gallery-item,
+  .uig_gallery_images.three-column .uig-gallery-item-resizer,
+  .uig_gallery_images.three-column .uig-gallery-item,
+  .uig_gallery_images.four-column .uig-gallery-item-resizer,
+  .uig_gallery_images.four-column .uig-gallery-item,
   .uig_masonry_layout .uig-gallery-item-resizer,
-  .uig_masonry_layout .uig-gallery-item {
+  .uig_gallery_images .uig-gallery-item {
     width: 50%;
   }
 }

@@ -28,6 +28,10 @@ The plugin's lightbox feature is also noteworthy, as it allows users to display 
 
 Another key feature of the Ultimate Image Gallery is its filter gallery functionality. This feature allows users to filter images based on specific criteria, such as by category. This can be particularly useful for websites that have a large number of images, as it makes it easier for users to find the images they are interested in.
 
+<strong>Masonry Gallery / Layout</strong>
+
+With Ultimate Image Gallery, you can showcase your photo galleries in a dynamic and responsive masonry layout.
+
 Overall, the Ultimate Image Gallery is an excellent plugin for anyone looking to enhance the presentation of images on their website. With its powerful image zoom, viewer, lightbox and filter gallery features. This plugin provides users with a range of tools that can help them showcase their images in a way that is engaging, professional and user-friendly. Whether you are a photographer, artist or simply looking to showcase your images in the best possible light, the Ultimate Image Gallery is definitely worth considering.
 
 == Installation ==
