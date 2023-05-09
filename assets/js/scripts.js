@@ -31,7 +31,7 @@
 
 		//Filter scripts
 		jQuery(''+parentClass+' .uig-filter-buttons button').on('click', function () {
-console.log(masonrySelector);
+
 			jQuery(''+parentClass+' .uig-filter-buttons button').removeClass('uig-filter-active');
 			jQuery(this).addClass('uig-filter-active');
 
@@ -81,6 +81,11 @@ console.log(masonrySelector);
 			
 		});
 
+	});
+	
+	//Fix masonry layout after loading images
+	jQuery('.uig_gallery_images.uig_masonry_layout img').on('load', function() {
+	  jQuery('button.uig-filter-button.uig-filter-active').trigger('click');
 	});
 	
 	//Wrap media buttons
