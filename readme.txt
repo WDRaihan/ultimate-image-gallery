@@ -103,6 +103,10 @@ Yes, you can copy the gallery shortcode and use it with the Elementor 'Shortcode
 
 == Changelog ==
 
+= 1.0.06 - 20/Nov/2023 =
+
+Fixed border radius issue of image title background
+
 = 1.0.05 - 07/Sep/2023 =
 
 Added image border radius option
