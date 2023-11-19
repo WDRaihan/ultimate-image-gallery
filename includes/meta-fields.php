@@ -140,6 +140,13 @@
 <hr>
 <p>
 	<?php
+		$display_image_title = !empty(get_post_meta($post->ID, 'uig_display_image_title', true)) ? get_post_meta($post->ID, 'uig_display_image_title', true) : '';
+		?>
+	<label for="display-title"><input id="display-title" name="uig_display_image_title" type="checkbox" value="yes" <?php checked('yes',$display_image_title,true); ?>> Display Image Title</label>
+</p>
+<hr>
+<p>
+	<?php
 		$uig_masonry_layout = !empty(get_post_meta($post->ID, 'uig_masonry_layout', true)) ? get_post_meta($post->ID, 'uig_masonry_layout', true) : '';
 		?>
 	<label for="masonry_layout"><input id="masonry_layout" name="uig_masonry_layout" type="checkbox" value="yes" <?php checked('yes',$uig_masonry_layout,true); ?>> Enable Masonry Layout</label>
@@ -176,8 +183,8 @@
 <hr>
 <p>
 	<?php
-		$display_image_title = !empty(get_post_meta($post->ID, 'uig_display_image_title', true)) ? get_post_meta($post->ID, 'uig_display_image_title', true) : '';
+		$uig_border_radius = !empty(get_post_meta($post->ID, 'uig_border_radius', true)) ? get_post_meta($post->ID, 'uig_border_radius', true) : '';
 		?>
-	<label for="display-title"><input id="display-title" name="uig_display_image_title" type="checkbox" value="yes" <?php checked('yes',$display_image_title,true); ?>> Display Image Title</label>
+	<label for="border_radius">Image Border Radius <input id="border_radius" name="uig_border_radius" type="number" min="0" max="120" value="<?php echo esc_attr($uig_border_radius); ?>" placeholder="0">PX. (Enter the border radius (in pixels) for image corners. Use 0 for square corners and higher values for rounded corners.)</label>
 </p>
 <?php wp_nonce_field( 'uig_meta_box_nonce', 'uig_meta_box_noncename' ); ?>

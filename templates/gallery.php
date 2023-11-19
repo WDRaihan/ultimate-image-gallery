@@ -5,6 +5,19 @@
 	$uig_masonry_layout = !empty(get_post_meta($id, 'uig_masonry_layout', true)) ? get_post_meta($id, 'uig_masonry_layout', true) : '';
 	$uig_gallery_column = !empty(get_post_meta($id, 'uig_gallery_column', true)) ? get_post_meta($id, 'uig_gallery_column', true) : 'three-column';
 	$uig_gallery_item_space = !empty(get_post_meta($id, 'uig_gallery_item_space', true)) ? get_post_meta($id, 'uig_gallery_item_space', true) : 'five-px';
+	$uig_border_radius = !empty(get_post_meta($id, 'uig_border_radius', true)) ? get_post_meta($id, 'uig_border_radius', true) : '0';
+	
+	?>
+	<style>
+		.uig-img-viewer.uig-img-viewer-<?php echo esc_attr($id); ?> .uig_gallery_images .uig-gallery-item img {
+			border-radius: <?php echo esc_attr($uig_border_radius); ?>px;
+		}
+		.uig-image-title {
+			border-bottom-left-radius: <?php echo esc_attr($uig_border_radius); ?>px;
+			border-bottom-right-radius: <?php echo esc_attr($uig_border_radius); ?>px;
+		}
+	</style>
+	<?php
 
 	$filter_wrapper_class = 'uig-image-gallery-wrapper';
 	if( $uig_gallery_type == 'filterable_gallery' ){

@@ -2,9 +2,9 @@
 Contributors: raihan143
 Tags: image gallery, image zoom, viewer, lightbox, filter gallery, photography, artist portfolio, wordpress gallery plugin, image zoom plugin, image viewer plugin, lightbox plugin, image filter plugin, WordPress image gallery, professional image display, image showcase plugin, WordPress media gallery, wordpress image viewer, interactive gallery, photo gallery, responsive gallery, best wordpress gallery, gallery blocks, elementor
 Requires at least: 5.4
-Tested up to: 6.2
+Tested up to: 6.4
 Requires PHP: 5.2.4
-Stable tag: 1.0.03
+Stable tag: 1.0.06
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,6 +102,14 @@ Yes, you can copy the gallery shortcode and use it with the Elementor 'Shortcode
 7. Masonry and 4 Columns Layout
 
 == Changelog ==
+
+= 1.0.05 - 07/Sep/2023 =
+
+Added image border radius option
+
+= 1.0.04 - 14/Aug/2023 =
+
+Fixed masonry layout issue
 
 = 1.0.03 - 5/May/2023 =
 
