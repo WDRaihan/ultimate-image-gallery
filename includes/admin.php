@@ -91,7 +91,7 @@ class UIG_ADMIN_FUNCTIONS {
         //Display image title
         update_post_meta( $post_id, 'uig_display_image_title', sanitize_text_field( $_POST['uig_display_image_title'] ) );
 
-        //Display image title
+        //Image border radius
         update_post_meta( $post_id, 'uig_border_radius', sanitize_text_field( $_POST['uig_border_radius'] ) );
         
     }
