@@ -1,0 +1,259 @@
+#uig_shortcode_copied_notice {
+    display: none;
+    color: #16a085;
+    margin-top: 5px
+}
+
+/* Tab style */
+.uig-content-and-style-tabs {
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+}
+
+.uig-content-and-style-tabs ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    border: 2px solid #16a085;
+    background: #16a085;
+    border-bottom: 0;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.uig-content-and-style-tabs ul li {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    background: #118d74;
+    margin: 0 1px;
+}
+
+.uig-content-and-style-tabs ul li.uig-tab-active {
+    background: #fff;
+    color: #000;
+}
+.uig-tab-data-styles,
+.uig-tab-data-shortcode {
+    display: none;
+}
+/*Repeatable style*/
+.uig-repeater-container {
+    background: #f8f8f8;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.uig-field-item {
+    background: #fff;
+    padding: 10px 20px 10px 20px;
+    margin: 7px 0;
+    box-shadow: 0px 0px 5px #ddd;
+	border-bottom: 2px solid #16a085;
+}
+
+.uig-repeater-action-buttons {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    position: relative;
+}
+.toggle-button.dashicons {
+    cursor: pointer;
+    margin-right: 20px;
+    padding: 0 !important;
+    transition: 0.6s
+}
+.toggle-button.arrow-down-style {
+    transform: rotate(180deg);
+}
+.uig-repeater-action-buttons a {
+    color: #ea1515;
+    text-decoration: none;
+}
+
+.uig-repeater-action-buttons span {
+    color: #777;
+    cursor: move;
+    padding-right: 20px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.uig-add-more-wrapper a#uig-add-field {
+    text-decoration: none;
+    padding: 10px;
+    border: 2px solid #16a085;
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+    background: #16a085;
+}
+.uig-gallery-image-upload.button.button-large.uig-image-upload {
+    background: #16a085;
+    color: #fff;
+    border-color: #16a085;
+}
+/*Filter type tab*/
+.uig-gallery-settings-heading {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #444;
+    line-height: 24px;
+    margin: 20px 0;
+}
+
+.uig-gallery-settings-heading.left-align {
+    text-align: left
+}
+
+.uig-filter-type-tabs {
+    display: flex;
+    border: 1px solid #16a085;
+    background-color: #eee;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 26px;
+}
+
+.uig-filter-type-tab {
+    display: block;
+    width: 50%;
+    background-color: #f5f5f5;
+    text-align: center;
+    border-right: 1px solid #16a085;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 10px;
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+.uig-filter-type-tab:last-child {
+    border-right: none;
+}
+
+.uig-filter-type-tab:hover {
+    background-color: #ddd;
+}
+
+.uig-filter-type-tabs input[type="radio"] {
+    display: none;
+}
+
+.uig-filter-type-tabs input[type="radio"]:checked + .uig-filter-type-tab {
+    background-color: #16a085;
+    color: #fff;
+}
+.hidden-if-image-gallery {
+    display: none
+}
+.uig-gallery-fields-wrapper ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: space-between;
+}
+
+.uig-gallery-fields-wrapper ul li {
+    width: calc(50% - 10px);
+    margin-bottom: 17px;
+}
+
+.uig-gallery-perview-image {
+    width: 32px;
+	height: 32px;
+    position: absolute;
+    left: 35px;
+    top: -7px;
+    right: 0;
+}
+.uig-gallery-form-control {
+    height: 32px;
+    border: 1px solid #ccc !important;
+    width: 100%;
+    border-radius: 3px
+}
+.uig-gallery-form-control:focus {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+label.uig-gallery-form-control-lebel {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.uig-image-field-wrappper input.uig-image-url {
+    width: calc(100% - 70px);
+}
+a.button.button-primary.button-large.uig-image-upload {
+    margin-bottom: 6px;
+}
+.pad-bottom-0 {
+    padding-bottom: 0
+}
+.border-bottom-0 {
+    border-bottom: 0;
+	margin-bottom: 0
+}
+.uig-border-focus {
+    border-color: #ff1414 !important;
+    box-shadow: 0px 0px 5px #ff1414 !important;
+}
+.ui-state-highlight {
+    border: 2px dashed #6f6f6f;
+}
+input.uig_display_shortcode {
+    background: #fff;
+    color: #444;
+    border-color: #16a085;
+    width: 100%;
+    padding: 5px 10px;
+}
+.uig-style-meta-table tr{
+	margin-bottom: 15px;
+	display: block
+}
+.uig-style-meta-table tr td:first-child{
+	min-width: 180px
+}
+.uig-style-meta-table .uig-form-field {
+	width: 120px
+}
+/*Pro fields CSS Start*/
+li.uig_disabled_field {
+    opacity: 0.7;
+}
+
+.uig_disabled_field label.uig-gallery-form-control-lebel {
+    position: relative;
+}
+
+.uig_disabled_field label.uig-gallery-form-control-lebel:after {
+    position: absolute;
+    content: '(pro)';
+    color: red;
+    margin-left: 7px;
+}
+
+li.uig_disabled_field input.uig-gallery-form-control {
+    pointer-events: none;
+}
+/*Pro fields CSS End*/

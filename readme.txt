@@ -1,0 +1,167 @@
+=== Ultimate Image Gallery - Image Zoom, Viewer, Lightbox and Filter Gallery ===
+Contributors: atplugins, raihan143
+Tags: image gallery, image zoom, filter gallery, image viewer plugin, lightbox plugin
+Requires at least: 5.4
+Tested up to: 6.8
+Requires PHP: 5.2.4
+Stable tag: 1.2.0
+License: GPL-2.0+
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This plugin enhances image presentation with zoom, viewer, lightbox, and filter gallery features for a better website experience.
+
+== Description ==
+
+The Ultimate Image Gallery is a powerful WordPress plugin designed to enhance the presentation of images on a website. This plugin offers a range of features including image zoom, viewer, lightbox and filter gallery. With its user-friendly interface, the Ultimate Image Gallery is easy to use and can be customized to fit any website's design and style.
+
+👉 Demo Link: [Live Preview](https://ultimate-image-gallery.atplugins.com/)
+
+== Image Zoom Gallery and Full-Screen Viewer ==
+
+One of the standout features of the Ultimate Image Gallery plugin is its powerful image zoom gallery functionality. With this feature, users can zoom in on images by up to 10,000%, giving them the ability to explore even the smallest details with precision. Whether you’re showcasing products, artwork, or photography, the image zoom gallery ensures that every detail is visible and engaging.
+
+In addition to zooming, the built-in image viewer also allows users to switch to full-screen mode for a more immersive experience. This combination of image zoom gallery and full-screen viewing transforms a standard image gallery into an interactive and professional display, enhancing the overall impact of your website’s visuals.
+
+Perfect for WordPress image zoom galleries, this feature is designed to improve user engagement, highlight image details, and create a seamless browsing experience that keeps visitors focused on your content.
+
+== Lightbox ==
+
+The plugin's lightbox feature is also noteworthy, as it allows users to display images in an attractive and professional manner. The lightbox feature creates a pop-up window that displays the selected image, providing a clean and uncluttered viewing experience that puts the focus squarely on the image itself.
+
+== Filter Gallery ==
+
+Another key feature of the Ultimate Image Gallery is its filter gallery functionality. This feature allows users to filter images based on specific criteria, such as by category. This can be particularly useful for websites that have a large number of images, as it makes it easier for users to find the images they are interested in.
+
+== Masonry Gallery / Layout ==
+
+With Ultimate Image Gallery, you can showcase your photo galleries in a dynamic and responsive masonry layout.
+
+<strong>Features:</strong>
+
+* **Responsive Design with Touch Support:** Ultimate Image Gallery is designed to be fully responsive, ensuring compatibility with mobile devices. Additionally, it provides touch support for optimal user experience.
+
+* **Unlimited Galleries:** With Ultimate Image Gallery, you can create an unlimited number of image galleries on your website.
+
+* **Compatibility with Popular Page Builders:** Ultimate Image Gallery seamlessly integrates with popular page builders like Elementor, WP Bakery, DIVI, Beaver Builder, and more.
+
+* **Sleek User Interface:** Our plugin boasts a clean and user-friendly interface that makes it easy to create and manage your image galleries.
+
+* **Lightweight and Fast:** Ultimate Image Gallery has been optimized for speed and is lightweight, ensuring that it doesn't negatively impact your website's performance.
+
+* **Lazy Load Image:** Our plugin is designed to be compatible with any lazy load plugins, ensuring that your website's performance remains optimal.
+
+* **Flexible Image Sizes:** Our plugin provides the flexibility to use any image size, ensuring that your image galleries look great no matter what.
+
+* **Customizable Gallery Layouts:** Give users the ability to choose from multiple layout options for their galleries, such as grid and masonry layouts.
+
+* **Image Filtering:** Give users the ability to filter images in their galleries based on category.
+
+* **Image Title:** Allow users to add titles to images in their galleries for better information.
+
+* **Lightbox Integration:** Integrate a lightbox feature that allows users to view their images in a larger, more detailed format.
+
+* More features are coming soon..
+
+<strong>Options:</strong>
+
+Ultimate Image Gallery comes with customizable options.
+
+* Gallery Type: Image Gallery and Filterable Image Gallery.
+* Enable or Disable Masonry Layout.
+* Item Columns: Select gallery image column for 2 columns, 3 columns or 4 columns.
+* Item Space: Add space between gallery images.
+* Display Image Title: Hide or show image title.
+* More options are coming soon..
+
+<strong>Gallery Shortcode:</strong>
+
+Once you publish your slider, a shortcode will be generated, allowing you to easily add the slider to any page or post on your website.
+
+Overall, the Ultimate Image Gallery is an excellent plugin for anyone looking to enhance the presentation of images on their website. With its powerful image zoom, viewer, lightbox and filter gallery features. This plugin provides users with a range of tools that can help them showcase their images in a way that is engaging, professional and user-friendly. Whether you are a photographer, artist or simply looking to showcase your images in the best possible light, the Ultimate Image Gallery is definitely worth considering.
+
+== Installation ==
+1. Download and unzip the plugin. Upload the unzipped folder to the wp-contents/plugins folder of your WordPress installation.
+2. Active the plugin from the WordPress Plugins administration page.
+3. OR, Go to WP admin panel, click 'Plugins' -> 'Add new'. In the search input box, type 'Ultimate Image Gallery'.
+4. Install and activate the plugin.
+
+== Frequently Asked Questions ==
+ 	= How do I create a gallery? =
+Ans: Go to 'Ultimate Gallery' from your admin dashboard.
+1. Create a gallery
+2. Copy the gallery shortcode
+3. And paste the shortcode where you want to display the gallery. If you want to display the gallery in a PHP file, you have to use it - <?php echo do_shortcode('[uig_gallery id="xxx"]'); ?>. 
+
+	= Is it possible to use Ultimate Image Gallery with Elementor? =
+Yes, you can copy the gallery shortcode and use it with the Elementor 'Shortcode' widget.
+
+== Screenshots ==
+
+1. Filte Gallery
+2. Filter Gallery Create
+3. Image Gallery Create
+4. Copy Gallery Shortcode
+5. Lightbox Feature
+6. Zoom Feature
+7. Masonry and 4 Columns Layout
+
+== Changelog ==
+
+= 1.2.0 - 16/09/2025 =
+
+Added gallery item space
+
+= 1.1.1 - 27/04/2025 =
+
+Minor bug fixed
+
+= 1.1.0 - 27/04/2025 =
+
+Support for the 'br' tag in image descriptions.
+Checked version compatibility
+
+= 1.0.10 - 12/02/2025 =
+
+Fixed an issue
+
+= 1.0.09 - 01/01/2025 =
+
+Checked version compatibility
+
+= 1.0.08 - 26/07/2024 =
+
+Fixed responsive issue.
+
+= 1.0.07 - 08/Jun/2024 =
+
+Fixed masonry layout issue.
+Added new feature: image description and style.
+Updated the admin panel design.
+
+= 1.0.06 - 20/Nov/2023 =
+
+Fixed border radius issue of image title background
+
+= 1.0.05 - 07/Sep/2023 =
+
+Added image border radius option
+
+= 1.0.04 - 14/Aug/2023 =
+
+Fixed masonry layout issue
+
+= 1.0.03 - 5/May/2023 =
+
+Compatibility with lazy load images
+
+= 1.0.02 - 13/Apr/2023 =
+
+Added masonry layout and column option
+
+= 1.0.01 - 12/Mar/2023 =
+
+Minor bug fixed
+
+= 1.0.0 - 11/Mar/2023 =
+
+Initial release
