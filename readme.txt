@@ -2,9 +2,9 @@
 Contributors: atplugins, raihan143
 Tags: image gallery, image zoom, filter gallery, image viewer plugin, lightbox plugin
 Requires at least: 5.4
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 5.2.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -106,6 +106,11 @@ Yes, you can copy the gallery shortcode and use it with the Elementor 'Shortcode
 7. Masonry and 4 Columns Layout
 
 == Changelog ==
+
+= 1.2.1 - 10/06/2026 =
+
+* Version compatible with WordPress 7.0
+* Added zoom feature enable/disable checkbox
 
 = 1.2.0 - 16/09/2025 =
 
