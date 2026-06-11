@@ -228,6 +228,7 @@
 	<h4 class="uig-gallery-settings-heading left-align"><?php echo esc_html__('Style Settings','ultimate_image_gallery'); ?></h4>
 	<table class="uig-style-meta-table">
 		<tbody>
+			<?php do_action( 'uig_style_settings_fields', $post ); ?>
 			<tr>
 				<td>
 					<?php

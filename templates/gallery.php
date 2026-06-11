@@ -26,6 +26,17 @@
 	}else{
 		$uig_gallery_layout = 'uig_grid_layout';
 	}
+	$uig_gallery_images_classes = apply_filters(
+		'uig_gallery_images_classes',
+		array(
+			'uig_gallery_images',
+			$uig_zoom_gallery_class,
+			$uig_gallery_layout,
+			$uig_gallery_column,
+			$uig_gallery_item_space,
+		),
+		$id
+	);
 	?>
 	<div class="<?php echo esc_attr($filter_wrapper_class); ?>">
 		<?php
@@ -33,7 +44,7 @@
 			include 'filter-buttons.php';
 		}
 		?>
-		<div id="uig_gallery_images_<?php echo esc_attr($id); ?>" class="uig_gallery_images <?php echo esc_attr($uig_zoom_gallery_class); ?> <?php echo esc_attr($uig_gallery_layout); ?> <?php echo esc_attr($uig_gallery_column); ?> <?php echo esc_attr($uig_gallery_item_space); ?>">
+		<div id="uig_gallery_images_<?php echo esc_attr($id); ?>" class="<?php echo esc_attr( implode( ' ', array_filter( $uig_gallery_images_classes ) ) ); ?>">
 			<?php if($uig_masonry_layout == 'yes') : ?>
 			<?php endif; ?>
 			<?php 

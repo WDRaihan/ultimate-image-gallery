@@ -42,8 +42,13 @@ class UIG_Ultimate_Image_Gallery {
 		//Require admin functions
 		require_once plugin_dir_path( __FILE__ ) . 'includes/admin.php';
 
-		//Require pro features
-		require_once plugin_dir_path( __FILE__ ) . 'pro-features/read-more.php';
+		//Require bundled pro features when present.
+		foreach ( array( 'gallery-info-layout.php', 'read-more.php', 'gallery-hover-layout.php' ) as $uig_pro_feature ) {
+			$uig_pro_feature_path = plugin_dir_path( __FILE__ ) . 'pro-features/' . $uig_pro_feature;
+			if ( file_exists( $uig_pro_feature_path ) ) {
+				require_once $uig_pro_feature_path;
+			}
+		}
     }
 	
 	/**

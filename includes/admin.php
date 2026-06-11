@@ -128,7 +128,6 @@ class UIG_ADMIN_FUNCTIONS {
 			'uig_display_image_description' => 'text',
 			'uig_enable_image_zoom' 		=> 'text',
 			'uig_border_radius' 			=> 'text',
-			'uig_image_info_layout' 		=> 'text',
 			'uig_filter_buttons_alignment' 	=> 'text',
 			'uig_filter_all_button_text' 	=> 'text',
 			'uig_filter_button_border_radius'=> 'text',
