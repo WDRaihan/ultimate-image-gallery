@@ -41,6 +41,9 @@ class UIG_Ultimate_Image_Gallery {
 
 		//Require admin functions
 		require_once plugin_dir_path( __FILE__ ) . 'includes/admin.php';
+
+		//Require pro features
+		require_once plugin_dir_path( __FILE__ ) . 'pro-features/read-more.php';
     }
 	
 	/**

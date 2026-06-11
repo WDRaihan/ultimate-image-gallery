@@ -69,6 +69,8 @@
 	function uig_replace_filter_category_name_attr() {
 		$("#uig-repeatable-fields .uig-field-item").each(function (index) {
 			$('.uig_filter_category_field', this).find('.uig-filter-category').attr('name', 'uig_filter_category[' + index + '][]');
+			$('.uig-item-readmore-radio', this).attr('name', 'uig_item_readmore_mode[' + index + ']');
+			$('.uig-item-readmore-url-wrap', this).find('input').attr('name', 'uig_item_readmore_page_url[' + index + ']');
 		});
 	}
 	

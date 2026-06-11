@@ -47,10 +47,19 @@
 							<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Image Title','ultimate_image_gallery'); ?></label>
 							<input class="uig-gallery-form-control" type="text" name="xxx_uig_image_title[]" value="" placeholder="<?php echo esc_html__('Enter image title','ultimate_image_gallery'); ?>">
 						</li>
-						
 						<li>
 							<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Image Description','ultimate_image_gallery'); ?></label>
 							<input class="uig-gallery-form-control" type="text" name="xxx_uig_image_description[]" value="" placeholder="<?php echo esc_html__('Enter image description','ultimate_image_gallery'); ?>">
+						</li>
+						<li class="uig-readmore-item-field">
+							<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Read More Mode','ultimate_image_gallery'); ?></label>
+							<div class="uig-readmore-mode-wrap" style="margin-bottom:6px;">
+								<label style="margin-right:14px;"><input type="radio" class="uig-item-readmore-radio" name="xxx_uig_item_readmore_mode[]" value="popup" checked> <?php echo esc_html__('Popup / Modal','ultimate_image_gallery'); ?></label>
+								<label><input type="radio" class="uig-item-readmore-radio" name="xxx_uig_item_readmore_mode[]" value="page"> <?php echo esc_html__('Link to Page','ultimate_image_gallery'); ?></label>
+							</div>
+							<div class="uig-item-readmore-url-wrap" style="display:none;">
+								<input type="url" class="uig-gallery-form-control" name="xxx_uig_item_readmore_page_url[]" value="" placeholder="<?php echo esc_html__('https://example.com/page','ultimate_image_gallery'); ?>">
+							</div>
 						</li>
 						<li class="uig_filter_category_field <?php echo esc_attr($hide_show_category_field); ?>">
 							<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Filter Category','ultimate_image_gallery'); ?></label>
@@ -105,6 +114,8 @@
 				}else{
 					$image_description = '';
 				}
+				$_uig_item_rm_mode     = isset( $uig_gallery_item['read_more_mode'] ) ? $uig_gallery_item['read_more_mode'] : 'popup';
+				$_uig_item_rm_page_url = isset( $uig_gallery_item['read_more_page_url'] ) ? $uig_gallery_item['read_more_page_url'] : '';
 			?>
 			<div class="uig-field-item">
 				<div class="uig-repeater-action-buttons">
@@ -127,6 +138,16 @@
 						<li class="uig_disabled_field-">
 							<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Image Description','ultimate_image_gallery'); ?></label>
 							<input class="uig-gallery-form-control" type="text" name="uig_image_description[]" value="<?php echo wp_kses( $image_description, array( 'br' => array() ) ); ?>" placeholder="<?php echo esc_html__('Enter image description','ultimate_image_gallery'); ?>">
+						</li>
+						<li class="uig-readmore-item-field">
+							<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Read More Mode','ultimate_image_gallery'); ?></label>
+							<div class="uig-readmore-mode-wrap" style="margin-bottom:6px;">
+								<label style="margin-right:14px;"><input type="radio" class="uig-item-readmore-radio" name="uig_item_readmore_mode[<?php echo esc_attr($xx); ?>]" value="popup" <?php checked( 'popup', $_uig_item_rm_mode ); ?>> <?php echo esc_html__('Popup / Modal','ultimate_image_gallery'); ?></label>
+								<label><input type="radio" class="uig-item-readmore-radio" name="uig_item_readmore_mode[<?php echo esc_attr($xx); ?>]" value="page" <?php checked( 'page', $_uig_item_rm_mode ); ?>> <?php echo esc_html__('Link to Page','ultimate_image_gallery'); ?></label>
+							</div>
+							<div class="uig-item-readmore-url-wrap" style="<?php echo ( $_uig_item_rm_mode !== 'page' ) ? 'display:none;' : ''; ?>">
+								<input type="url" class="uig-gallery-form-control" name="uig_item_readmore_page_url[<?php echo esc_attr($xx); ?>]" value="<?php echo esc_url( $_uig_item_rm_page_url ); ?>" placeholder="<?php echo esc_html__('https://example.com/page','ultimate_image_gallery'); ?>">
+							</div>
 						</li>
 						<li class="uig_filter_category_field  <?php echo esc_attr($hide_show_category_field); ?>">
 							<label class="uig-gallery-form-control-lebel"><?php echo esc_html__('Filter Category','ultimate_image_gallery'); ?></label>
